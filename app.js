@@ -14,6 +14,13 @@ const COHORT_LABEL = {
 };
 const COHORT_STRENGTH = { exact: 6, related: 5, similar: 4, similarRelaxed: 3, partial: 2, partialRelaxed: 1 };
 
+// "Relaxed" isn't its own cohort — it's a relaxation modifier on Similar / Partial Match.
+// So the tab bar shows 5 base buckets (all, exact, related, similar, partial); when Similar or
+// Partial Match is active, an inline toggle reveals its Relaxed sibling on top, without ever
+// hiding that data behind a merge. Every one of the original 6 tags is still fully reachable.
+const RELAXED_SIBLING = { similar: 'similarRelaxed', partial: 'partialRelaxed' };
+const BASE_TAB_ORDER = ['exact', 'related', 'similar', 'partial'];
+
 // ── Students ──────────────────────────────────────────────────
 const STUDENTS = {
   priya: {
@@ -142,6 +149,7 @@ const state = {
   flexible: { ...STUDENTS.priya.flexibleDefaults },       // applied — drives filtering
   pendingFlexible: { ...STUDENTS.priya.flexibleDefaults }, // draft — bound to the inputs, committed on Apply
   cohortTab: 'all',
+  includeRelaxed: false,     // shown/used only when cohortTab is 'similar' or 'partial'
   countryFilter: null,
   categoryFilter: 'all',
   collegeSearch: '',
@@ -171,6 +179,7 @@ function switchStudent(id) {
   state.flexible = { ...student.flexibleDefaults };
   state.pendingFlexible = { ...student.flexibleDefaults };
   state.cohortTab = 'all';
+  state.includeRelaxed = false;
   state.countryFilter = null;
   state.categoryFilter = 'all';
   state.collegeSearch = '';
@@ -233,7 +242,12 @@ function cohortCounts(pool) {
 function getVisibleResults() {
   let pool = getSourcePool();
   pool = pool.filter(passesFlexible).filter(passesSecondary);
-  if (state.cohortTab !== 'all') pool = pool.filter(c => c._cohort === state.cohortTab);
+  const relaxedSibling = RELAXED_SIBLING[state.cohortTab];
+  if (relaxedSibling) {
+    pool = pool.filter(c => c._cohort === state.cohortTab || (state.includeRelaxed && c._cohort === relaxedSibling));
+  } else if (state.cohortTab !== 'all') {
+    pool = pool.filter(c => c._cohort === state.cohortTab);
+  }
   return pool;
 }
 
@@ -388,14 +402,35 @@ function renderSourceSelector() {
 function renderCohortTabs() {
   const pool = getSourcePool().filter(passesFlexible).filter(passesSecondary);
   const counts = cohortCounts(pool);
+  const countFor = (key) => {
+    const sibling = RELAXED_SIBLING[key];
+    return counts[key] + (sibling && state.includeRelaxed ? counts[sibling] : 0);
+  };
   const wrap = document.getElementById('cohortTabs');
-  const tabs = [['all', 'All'], ...COHORT_ORDER.map(k => [k, COHORT_LABEL[k]])];
-  wrap.innerHTML = tabs.map(([key, label]) => `
+  const tabs = [['all', 'All', counts.all], ...BASE_TAB_ORDER.map(k => [k, COHORT_LABEL[k], countFor(k)])];
+  wrap.innerHTML = tabs.map(([key, label, count]) => `
     <button class="cohort-tab ${state.cohortTab === key ? 'cohort-tab-active' : ''}" data-cohort="${key}" type="button">
-      ${label} <span class="opacity-60">(${counts[key] || 0})</span>
+      ${label} <span class="opacity-60">(${count})</span>
     </button>
   `).join('');
   wrap.querySelectorAll('button').forEach(b => b.onclick = () => { state.cohortTab = b.dataset.cohort; renderAll(); });
+
+  // Inline "Relaxed" modifier — only relevant when Similar or Partial Match is the active tab.
+  const relaxedWrap = document.getElementById('relaxedToggleWrap');
+  const sibling = RELAXED_SIBLING[state.cohortTab];
+  if (sibling) {
+    const extra = counts[sibling];
+    relaxedWrap.classList.remove('hidden');
+    relaxedWrap.innerHTML = `
+      <label class="inline-flex items-center gap-2 text-xs text-text-muted cursor-pointer select-none">
+        <input type="checkbox" id="relaxedToggle" class="pretty w-3.5 h-3.5 cursor-pointer" ${state.includeRelaxed ? 'checked' : ''} />
+        Include relaxed criteria (${COHORT_LABEL[sibling]})${extra > 0 ? ` <span class="text-accent-dark font-medium">+${extra} more</span>` : ' <span class="opacity-60">(0 more)</span>'}
+      </label>`;
+    document.getElementById('relaxedToggle').onchange = (e) => { state.includeRelaxed = e.target.checked; renderAll(); };
+  } else {
+    relaxedWrap.classList.add('hidden');
+    relaxedWrap.innerHTML = '';
+  }
 }
 
 function renderSidebar() {
