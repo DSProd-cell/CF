@@ -138,7 +138,7 @@ const state = {
   studentId: 'priya',
   source: 'career',          // 'course' | 'career' | 'both'
   sourceIsManual: false,
-  flexibleMode: 'availability', // 'availability' | 'asked'
+  flexibleMode: 'asked', // 'availability' | 'asked' — defaults to F2F; counsellor opts into "With constraint"
   flexible: { ...STUDENTS.priya.flexibleDefaults },       // applied — drives filtering
   pendingFlexible: { ...STUDENTS.priya.flexibleDefaults }, // draft — bound to the inputs, committed on Apply
   cohortTab: 'all',
@@ -167,7 +167,7 @@ function switchStudent(id) {
   const def = computeDefaultSource(student);
   state.source = def.source;
   state.sourceIsManual = false;
-  state.flexibleMode = 'availability';
+  state.flexibleMode = 'asked';
   state.flexible = { ...student.flexibleDefaults };
   state.pendingFlexible = { ...student.flexibleDefaults };
   state.cohortTab = 'all';
@@ -264,7 +264,8 @@ function renderStudentHeader() {
       <div class="flex items-center gap-2 flex-wrap">
         <span class="font-semibold text-text-main">${s.name}</span>
         <span class="text-xs text-text-muted">•</span>
-        <span class="text-xs text-text-muted">${s.workExpMonths > 0 ? `${s.workExpMonths} mo work exp` : 'Fresher'}</span>
+        <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold ${s.workExpMonths > 0 ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-600'}">${s.workExpMonths > 0 ? 'Experienced' : 'Fresher'}</span>
+        <span class="text-xs text-text-muted">${s.workExpMonths > 0 ? `${s.workExpMonths} mo work exp` : 'No work experience on file'}</span>
         ${s.hasCareerPreference ? `<span class="text-xs text-text-muted">•</span><span class="text-xs text-text-muted">Career pref: <b class="text-text-main font-medium">${s.careerPreference}</b></span>` : `<span class="text-xs text-text-muted">•</span><span class="text-xs text-text-muted italic">No career preference on file</span>`}
       </div>
       <div class="text-xs text-text-muted mt-0.5">Requesting: ${s.courseRequirement}</div>
@@ -349,7 +350,10 @@ function renderCIM() {
         <div class="text-xs text-text-muted truncate">${cim.university} · ${cim.country}</div>
       </div>
       <span class="text-xs px-2 py-1 rounded-md ${intakeClasses(cim.intakeStatus)}">${cim.intakeStatus}</span>
-      <span class="text-xs text-text-muted whitespace-nowrap">Auto-added to shortlist</span>
+      <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-md whitespace-nowrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+        Added to shortlist by default
+      </span>
       <button id="cimRemoveBtn" class="text-text-muted hover:text-rose-600 cursor-pointer p-1" title="Remove from shortlist">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
@@ -357,12 +361,25 @@ function renderCIM() {
   document.getElementById('cimRemoveBtn').onclick = () => { state.cimRemoved[s.id] = true; state.shortlist.delete(cim.id); renderAll(); };
 }
 
+const SOURCE_LABELS = { course: 'Course requirement', career: 'Career preference', both: 'Both' };
+
+function sourceOrder(student) {
+  // Fresher: course requirement first. Experienced: career preference first. "Both" is always last.
+  return student.workExpMonths > 0 ? ['career', 'course', 'both'] : ['course', 'career', 'both'];
+}
+
 function renderSourceSelector() {
   const s = currentStudent();
-  document.querySelectorAll('#sourceSelector button').forEach(b => b.classList.toggle('seg-active', b.dataset.source === state.source));
+  const wrap = document.getElementById('sourceSelector');
+  wrap.innerHTML = sourceOrder(s).map(key => `
+    <button class="seg-btn ${state.source === key ? 'seg-active' : ''}" data-source="${key}" type="button">${SOURCE_LABELS[key]}</button>
+  `).join('');
+  wrap.querySelectorAll('button').forEach(b => {
+    b.onclick = () => { state.source = b.dataset.source; state.sourceIsManual = true; renderAll(); };
+  });
   const caption = document.getElementById('sourceCaption');
   if (state.sourceIsManual) {
-    caption.textContent = `Manually set to ${state.source === 'course' ? 'Course requirement' : state.source === 'career' ? 'Career preference' : 'Both'}.`;
+    caption.textContent = `Manually set to ${SOURCE_LABELS[state.source]}.`;
   } else {
     caption.textContent = computeDefaultSource(s).reason;
   }
@@ -567,14 +584,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderResults();
     renderCohortTabs();
     renderApplyState();
-  });
-
-  document.querySelectorAll('#sourceSelector button').forEach(b => {
-    b.addEventListener('click', () => {
-      state.source = b.dataset.source;
-      state.sourceIsManual = true;
-      renderAll();
-    });
   });
 
   document.getElementById('categoryFilter').addEventListener('change', (e) => { state.categoryFilter = e.target.value; renderAll(); });
