@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shortlist Generator v2</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: '#EA580C',
+            'accent-dark': '#C2410C',
+            surface: '#F1F5F9',
+            card: '#FFFFFF',
+            'text-main': '#0F172A',
+            'text-muted': '#64748B',
+            border: '#E2E8F0',
+          },
+          fontFamily: { body: ['Poppins', 'sans-serif'], mono: ['Fira Code', 'monospace'] },
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="font-body bg-surface text-text-main min-h-screen">
+
+  <!-- Top bar -->
+  <div class="bg-white border-b border-border sticky top-0 z-20">
+    <div class="max-w-[1400px] mx-auto px-5 py-3 flex items-center justify-between gap-3 flex-wrap lg:flex-nowrap">
+      <div class="flex items-center gap-3 min-w-0 shrink-0">
+        <div class="w-9 h-9 rounded-lg bg-accent flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <h1 class="text-sm font-semibold leading-tight">Shortlist Generator</h1>
+          <p class="text-xs text-text-muted leading-tight">v2 — prototype</p>
+        </div>
+      </div>
+
+      <div id="studentMeta" class="flex items-center gap-3 min-w-0 w-full order-3 lg:order-none lg:w-auto lg:flex-1 justify-center"></div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <select id="studentSwitcher" class="text-sm border border-border rounded-lg px-3 py-2 bg-white cursor-pointer">
+          <option value="priya">Priya Sharma</option>
+          <option value="arjun">Arjun Mehta</option>
+          <option value="sana">Sana Iyer</option>
+        </select>
+        <button id="viewBookmarksBtn" type="button" class="relative flex items-center gap-2 bg-accent hover:bg-accent-dark text-white text-sm font-medium px-4 py-2 rounded-lg cursor-pointer transition-colors">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-4-7 4V5z"/></svg>
+          View Bookmarks
+          <span id="bookmarkCount" class="bg-white text-accent-dark text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Strict filters bar -->
+  <div class="bg-white border-b border-border">
+    <div class="max-w-[1400px] mx-auto px-5 py-2.5 flex items-center gap-4 flex-wrap text-sm">
+      <span class="text-xs font-semibold text-text-muted uppercase tracking-wide">Strict filters</span>
+      <span class="pill pill-active">Intake: Sep 2026</span>
+      <span class="pill">Academic cutoff: Standard</span>
+      <span class="pill">Academic cutoff: Relaxed</span>
+    </div>
+  </div>
+
+  <!-- Course type pills -->
+  <div class="max-w-[1400px] mx-auto px-5 pt-3 flex items-center gap-2 flex-wrap" id="courseTypePills"></div>
+
+  <div class="max-w-[1400px] mx-auto px-5 py-4 flex gap-5 items-start">
+
+    <!-- Sidebar -->
+    <aside class="w-[240px] shrink-0 bg-white border border-border rounded-xl p-4 hidden lg:block">
+      <div class="mb-4">
+        <div class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-2">Country</div>
+        <div id="countryPills" class="flex flex-wrap gap-1.5"></div>
+      </div>
+      <div class="mb-4">
+        <div class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-2">Course category</div>
+        <select id="categoryFilter" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 bg-white cursor-pointer">
+          <option value="all">All categories</option>
+          <option value="stem">STEM</option>
+          <option value="business">Business</option>
+        </select>
+      </div>
+      <div>
+        <div class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-2">Colleges</div>
+        <input id="collegeSearch" type="text" placeholder="Search colleges…" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 mb-2" />
+        <div id="collegeList" class="max-h-56 overflow-y-auto space-y-0.5"></div>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 min-w-0 space-y-4">
+
+      <!-- Always-required fields -->
+      <div class="bg-white border border-border rounded-xl p-4">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="alwaysRequired"></div>
+      </div>
+
+      <!-- Flexible fields -->
+      <div class="bg-white border border-border rounded-xl p-4">
+        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
+          <div class="text-sm font-semibold">Flexible fields</div>
+          <div class="flex items-center gap-2.5 text-sm">
+            <span class="text-text-muted">Match availability</span>
+            <label class="switch">
+              <input type="checkbox" id="flexSwitch" />
+              <span class="track"></span>
+            </label>
+            <span class="text-text-muted">As student asked</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="flex-field">
+            <label class="text-xs font-medium text-text-muted block mb-1">Overall tuition fee (max, $)</label>
+            <input id="maxTuition" type="number" step="500" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
+          </div>
+          <div class="flex-field">
+            <label class="text-xs font-medium text-text-muted block mb-1">Backlog(s) allowed</label>
+            <input id="backlogs" type="number" step="1" min="0" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
+          </div>
+          <div class="flex-field">
+            <label class="text-xs font-medium text-text-muted block mb-1">Work exp (months)</label>
+            <input id="workExp" type="number" step="1" min="0" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
+          </div>
+          <div class="flex-field">
+            <label class="text-xs font-medium text-text-muted block mb-1">Grades (min %)</label>
+            <input id="grade" type="number" step="1" min="0" max="100" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
+          </div>
+        </div>
+        <p id="flexNote" class="text-xs text-text-muted mt-3"></p>
+      </div>
+
+      <!-- Course in Mind -->
+      <div class="bg-white border border-border rounded-xl" id="cimRow"></div>
+
+      <!-- Source selector -->
+      <div class="bg-white border border-border rounded-xl p-4">
+        <div class="flex items-center justify-between flex-wrap gap-3">
+          <div class="text-sm font-semibold">Shortlist based on</div>
+          <div id="sourceSelector" class="inline-flex bg-surface rounded-lg p-1 gap-1">
+            <button class="seg-btn" data-source="course" type="button">Course requirement</button>
+            <button class="seg-btn" data-source="career" type="button">Career preference</button>
+            <button class="seg-btn" data-source="both" type="button">Both</button>
+          </div>
+        </div>
+        <p id="sourceCaption" class="text-xs text-text-muted mt-2"></p>
+      </div>
+
+      <!-- Cohort tabs -->
+      <div class="bg-white border border-border rounded-xl px-4 pt-3">
+        <div id="cohortTabs" class="flex items-center gap-5 overflow-x-auto"></div>
+      </div>
+
+      <!-- Secondary filters -->
+      <div class="flex items-center gap-4 flex-wrap px-1">
+        <label class="flex items-center gap-2 text-sm cursor-pointer">
+          <input type="checkbox" id="partneredOnly" class="pretty w-4 h-4 cursor-pointer" />
+          Partnered Courses
+        </label>
+        <label class="flex items-center gap-2 text-sm cursor-pointer">
+          <input type="checkbox" id="scholarshipOnly" class="pretty w-4 h-4 cursor-pointer" />
+          With Scholarships
+        </label>
+        <input id="courseSearch" type="text" placeholder="Search course or university…" class="flex-1 min-w-[200px] text-sm border border-border rounded-lg px-3 py-2" />
+      </div>
+
+      <!-- Results grid -->
+      <div id="resultsGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3"></div>
+
+    </main>
+  </div>
+
+  <!-- Drawer -->
+  <div id="drawer">
+    <div id="drawerBackdrop"></div>
+    <div id="drawerPanel">
+      <div class="flex items-center justify-between px-5 py-4 border-b border-border">
+        <div class="font-semibold text-sm">Shortlist</div>
+        <button id="drawerCloseBtn" class="text-text-muted hover:text-text-main cursor-pointer p-1" type="button">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div id="drawerList" class="flex-1 overflow-y-auto"></div>
+      <div class="p-4 border-t border-border">
+        <button id="sendShortlistBtn" type="button" class="w-full bg-accent hover:bg-accent-dark text-white text-sm font-medium py-2.5 rounded-lg cursor-pointer transition-colors">Send to student</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast">
+    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+    Shortlist sent to student (demo).
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
