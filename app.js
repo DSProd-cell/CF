@@ -35,7 +35,7 @@ const STUDENTS = {
     careerPreference: 'Business Analyst',
     hasCareerPreference: true,
     flexibleDefaults: { intake: 'Sep 2026', maxTuition: 30000, backlogs: 1, workExp: 14, grade: 72 },
-    courseTypePills: [{ label: 'MSc Business Analytics', count: 9 }, { label: 'MSc Management Analytics', count: 3 }],
+    courseTypePills: [{ label: 'MSc Business Analytics', count: 15 }, { label: 'MSc Management Analytics', count: 3 }],
     cim: {
       id: 'cim-priya', name: 'MSc Financial Analytics', university: 'London School of Economics', country: 'UK',
       qsRank: 45, durationMonths: 12, tuitionFeeUSD: 34500, scholarshipCount: 2, safety: 'Moderate',
@@ -54,7 +54,7 @@ const STUDENTS = {
     careerPreference: null,
     hasCareerPreference: false,
     flexibleDefaults: { intake: 'Jan 2027', maxTuition: 24000, backlogs: 0, workExp: 0, grade: 68 },
-    courseTypePills: [{ label: 'MSc Computer Science', count: 8 }],
+    courseTypePills: [{ label: 'MSc Computer Science', count: 14 }],
     cim: {
       id: 'cim-arjun', name: 'MSc Artificial Intelligence', university: 'Carnegie Mellon University', country: 'USA',
       qsRank: 22, durationMonths: 24, tuitionFeeUSD: 41000, scholarshipCount: 0, safety: 'Moderate',
@@ -73,7 +73,7 @@ const STUDENTS = {
     careerPreference: 'UX Designer',
     hasCareerPreference: true,
     flexibleDefaults: { intake: 'Sep 2026', maxTuition: 28000, backlogs: 2, workExp: 8, grade: 65 },
-    courseTypePills: [{ label: 'MSc Robotics Engineering', count: 6 }],
+    courseTypePills: [{ label: 'MSc Robotics Engineering', count: 13 }],
     cim: {
       id: 'cim-sana', name: 'MSc Robotics & AI', university: 'Carnegie Mellon University', country: 'USA',
       qsRank: 22, durationMonths: 24, tuitionFeeUSD: 43500, scholarshipCount: 1, safety: 'Ambitious',
@@ -117,6 +117,16 @@ const COURSES = {
     { id:'p10', intakeTerm:'Jan 2027', name:'MSc Data Science for Business', university:'ESSEC Business School', country:'France', qsRank:76, durationMonths:16, tuitionFeeUSD:27900, backlogsAllowed:2, minWorkExpMonths:6, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'similarRelaxed' },
     { id:'p11', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'York University', country:'Canada', qsRank:210, durationMonths:12, tuitionFeeUSD:22500, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
     { id:'p12', intakeTerm:'Sep 2026', name:'MSc Analytics & Management', university:'Cambridge Judge Business School', country:'UK', qsRank:5, durationMonths:12, tuitionFeeUSD:42000, backlogsAllowed:0, minWorkExpMonths:24, minGradePercent:80, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'related', cohortByCareer:'related' },
+    { id:'p13', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Rotterdam School of Management', country:'Netherlands', qsRank:60, durationMonths:12, tuitionFeeUSD:26000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'p14', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Leeds', country:'UK', qsRank:75, durationMonths:12, tuitionFeeUSD:28500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'p15', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Deakin University', country:'Australia', qsRank:250, durationMonths:24, tuitionFeeUSD:27500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'p16', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Alberta', country:'Canada', qsRank:111, durationMonths:16, tuitionFeeUSD:23500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:58, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'p17', intakeTerm:'Sep 2026', name:'MSc Marketing Analytics', university:'Bocconi University', country:'Italy', qsRank:150, durationMonths:12, tuitionFeeUSD:31000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:70, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Waitlist', cohortByCourse:null, cohortByCareer:'similar' },
+    { id:'p18', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'Copenhagen Business School', country:'Denmark', qsRank:180, durationMonths:12, tuitionFeeUSD:20000, backlogsAllowed:1, minWorkExpMonths:6, minGradePercent:62, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'similarRelaxed' },
+    { id:'p19', intakeTerm:'Sep 2026', name:'MSc Data-Driven Business', university:'Erasmus University Rotterdam', country:'Netherlands', qsRank:152, durationMonths:12, tuitionFeeUSD:24000, backlogsAllowed:1, minWorkExpMonths:6, minGradePercent:65, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partial' },
+    { id:'p20', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Auckland', country:'New Zealand', qsRank:87, durationMonths:18, tuitionFeeUSD:26500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partialRelaxed' },
+    { id:'p21', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'University of Bath', country:'UK', qsRank:148, durationMonths:12, tuitionFeeUSD:33000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:68, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partial' },
+    { id:'p22', intakeTerm:'Jan 2027', name:'MSc Marketing & Business Analytics', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:34500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:70, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Closing soon', cohortByCourse:null, cohortByCareer:'partialRelaxed' },
   ],
   arjun: [
     { id:'a1', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:20, tuitionFeeUSD:28500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:2, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
@@ -127,6 +137,12 @@ const COURSES = {
     { id:'a6', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'Dublin City University', country:'Ireland', qsRank:401, durationMonths:12, tuitionFeeUSD:19500, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
     { id:'a7', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'RWTH Aachen', country:'Germany', qsRank:106, durationMonths:24, tuitionFeeUSD:9500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
     { id:'a8', intakeTerm:'Jan 2027', name:'MSc Information Technology', university:'University of Sydney', country:'Australia', qsRank:19, durationMonths:24, tuitionFeeUSD:31500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'a9', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of British Columbia', country:'Canada', qsRank:34, durationMonths:20, tuitionFeeUSD:29500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'a10', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Trinity College Dublin', country:'Ireland', qsRank:81, durationMonths:12, tuitionFeeUSD:21500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:58, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'a11', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:24, tuitionFeeUSD:32500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'a12', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Technical University of Berlin', country:'Germany', qsRank:154, durationMonths:24, tuitionFeeUSD:7500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'a13', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Illinois Urbana-Champaign', country:'USA', qsRank:65, durationMonths:18, tuitionFeeUSD:30500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:72, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'exact', cohortByCareer:null },
+    { id:'a14', intakeTerm:'Sep 2026', name:'MSc Data Science', university:'University of Glasgow', country:'UK', qsRank:87, durationMonths:12, tuitionFeeUSD:25500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
   ],
   sana: [
     { id:'s1', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'ETH Zurich', country:'Switzerland', qsRank:7, durationMonths:24, tuitionFeeUSD:15800, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:78, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
@@ -135,6 +151,13 @@ const COURSES = {
     { id:'s4', intakeTerm:'Sep 2026', name:'MSc Mechatronics and Robotics', university:'KTH Royal Institute of Technology', country:'Sweden', qsRank:98, durationMonths:24, tuitionFeeUSD:0, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
     { id:'s5', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:18, tuitionFeeUSD:34500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
     { id:'s6', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'Georgia Institute of Technology', country:'USA', qsRank:47, durationMonths:20, tuitionFeeUSD:36000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:72, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'s7', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:16, tuitionFeeUSD:30500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:68, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
+    { id:'s8', intakeTerm:'Jan 2027', name:'MSc Robotics Engineering', university:'National University of Singapore', country:'Singapore', qsRank:8, durationMonths:18, tuitionFeeUSD:25000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'s9', intakeTerm:'Sep 2026', name:'MSc Robotics & Automation', university:'TU Delft', country:'Netherlands', qsRank:47, durationMonths:24, tuitionFeeUSD:18500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'s10', intakeTerm:'Jan 2027', name:'MSc Robotics', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:33500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:72, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'s11', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'University of Bristol', country:'UK', qsRank:61, durationMonths:18, tuitionFeeUSD:29500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'s12', intakeTerm:'Jan 2027', name:'MSc Robotics', university:'Arizona State University', country:'USA', qsRank:213, durationMonths:20, tuitionFeeUSD:27000, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'s13', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'Carnegie Mellon University', country:'USA', qsRank:22, durationMonths:20, tuitionFeeUSD:42000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:78, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'exact', cohortByCareer:null },
   ],
   // No matching courses at all — course requirement, career preference, and Both are all blank for this student.
   karan: [],
@@ -424,7 +447,7 @@ function renderCohortTabs() {
     relaxedWrap.innerHTML = `
       <label class="inline-flex items-center gap-2 text-xs text-text-muted cursor-pointer select-none">
         <input type="checkbox" id="relaxedToggle" class="pretty w-3.5 h-3.5 cursor-pointer" ${state.includeRelaxed ? 'checked' : ''} />
-        Include relaxed criteria (${COHORT_LABEL[sibling]})${extra > 0 ? ` <span class="text-accent-dark font-medium">+${extra} more</span>` : ' <span class="opacity-60">(0 more)</span>'}
+        Include relaxed criteria (${COHORT_LABEL[sibling]})${extra > 0 ? ` — <span class="text-accent-dark font-medium">${extra} additional course${extra === 1 ? '' : 's'} available</span>` : ' — <span class="opacity-60">no additional courses available</span>'}
       </label>`;
     document.getElementById('relaxedToggle').onchange = (e) => { state.includeRelaxed = e.target.checked; renderAll(); };
   } else {
