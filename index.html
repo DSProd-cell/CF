@@ -50,6 +50,7 @@
           <option value="priya">Priya Sharma</option>
           <option value="arjun">Arjun Mehta</option>
           <option value="sana">Sana Iyer</option>
+          <option value="karan">Karan Verma (blank)</option>
         </select>
         <button id="viewBookmarksBtn" type="button" class="relative flex items-center gap-2 bg-accent hover:bg-accent-dark text-white text-sm font-medium px-4 py-2 rounded-lg cursor-pointer transition-colors">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-4-7 4V5z"/></svg>
@@ -101,7 +102,7 @@
 
       <!-- Always-required fields -->
       <div class="bg-white border border-border rounded-xl p-4">
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="alwaysRequired"></div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="alwaysRequired"></div>
       </div>
 
       <!-- Flexible fields -->
@@ -109,15 +110,23 @@
         <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
           <div class="text-sm font-semibold">Flexible fields</div>
           <div class="flex items-center gap-2.5 text-sm">
-            <span class="text-text-muted">Match availability</span>
+            <span class="text-text-muted">With constraint</span>
             <label class="switch">
               <input type="checkbox" id="flexSwitch" />
               <span class="track"></span>
             </label>
-            <span class="text-text-muted">As student asked</span>
+            <span class="text-text-muted">Student to join F2F</span>
           </div>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+          <div class="flex-field">
+            <label class="text-xs font-medium text-text-muted block mb-1">Intake</label>
+            <select id="intakeFlex" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 bg-white cursor-pointer">
+              <option value="Sep 2026">Sep 2026</option>
+              <option value="Jan 2027">Jan 2027</option>
+              <option value="May 2027">May 2027</option>
+            </select>
+          </div>
           <div class="flex-field">
             <label class="text-xs font-medium text-text-muted block mb-1">Overall tuition fee (max, $)</label>
             <input id="maxTuition" type="number" step="500" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
@@ -135,7 +144,10 @@
             <input id="grade" type="number" step="1" min="0" max="100" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
           </div>
         </div>
-        <p id="flexNote" class="text-xs text-text-muted mt-3"></p>
+        <div class="flex items-center justify-between gap-3 mt-3 flex-wrap">
+          <p id="flexNote" class="text-xs text-text-muted flex-1 min-w-[200px]"></p>
+          <button id="applyFlexBtn" type="button" class="shrink-0 bg-accent hover:bg-accent-dark text-white text-xs font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors">Apply</button>
+        </div>
       </div>
 
       <!-- Course in Mind -->

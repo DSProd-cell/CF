@@ -46,6 +46,9 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 .switch input:checked + .track { background: #EA580C; }
 .switch input:checked + .track::before { transform: translateX(18px); }
 
+#applyFlexBtn:disabled { opacity: 0.4; cursor: not-allowed; }
+#applyFlexBtn.apply-btn-dirty { box-shadow: 0 0 0 3px rgba(234,88,12,0.25); }
+
 /* Segmented control */
 .seg-btn {
   padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 500;
