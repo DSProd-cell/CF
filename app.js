@@ -168,7 +168,7 @@ const COURSES = {
 // ── App state ─────────────────────────────────────────────────
 const state = {
   studentId: 'priya',
-  source: 'career',          // 'course' | 'career' | 'both'
+  source: 'career',          // 'course' | 'career'
   sourceIsManual: false,
   flexibleMode: 'asked', // 'availability' | 'asked' — defaults to F2F; counsellor opts into "With constraint"
   flexible: { ...STUDENTS.priya.flexibleDefaults },       // applied — drives filtering
@@ -180,9 +180,8 @@ const state = {
   cohortTab: 'all',
   relaxedIncluded: { similar: false, partial: false }, // independent per bucket, so "All" can reflect either
   countryFilter: null,
-  categoryFilter: 'all',
-  collegeSearch: '',
-  sidebarOpen: { country: false, category: false, colleges: false, other: false }, // FILTERS accordion — collapsed by default
+  globalSearch: '',          // sidebar "Global Search" — filters course/university/career text live
+  sidebarOpen: { country: false, other: false }, // FILTERS accordion — collapsed by default
   courseSearch: '',          // applied — drives filtering
   pendingCourseSearch: '',   // draft — bound to the search input, committed on Apply
   partneredOnly: false,
@@ -216,9 +215,8 @@ function switchStudent(id) {
   state.cohortTab = 'all';
   state.relaxedIncluded = { similar: false, partial: false };
   state.countryFilter = null;
-  state.categoryFilter = 'all';
-  state.sidebarOpen = { country: false, category: false, colleges: false, other: false };
-  state.collegeSearch = '';
+  state.globalSearch = '';
+  state.sidebarOpen = { country: false, other: false };
   state.courseSearch = '';
   state.pendingCourseSearch = '';
   state.partneredOnly = false;
@@ -249,29 +247,14 @@ function passesSecondary(course) {
   if (state.partneredOnly && !course.partnered) return false;
   if (state.scholarshipOnly && course.scholarshipCount < 1) return false;
   if (state.courseSearch && !(`${course.name} ${course.university}`.toLowerCase().includes(state.courseSearch.toLowerCase()))) return false;
+  if (state.globalSearch && !(`${course.name} ${course.university} ${course.country} ${course.careerPath || ''}`.toLowerCase().includes(state.globalSearch.toLowerCase()))) return false;
   return true;
-}
-
-function badgeFor(course) {
-  const inCourse = !!course.cohortByCourse;
-  const inCareer = !!course.cohortByCareer;
-  if (inCourse && inCareer) return 'Course + career match';
-  if (inCourse) return 'Course match';
-  return 'Career match';
-}
-
-function mergedCohort(course) {
-  const a = course.cohortByCourse, b = course.cohortByCareer;
-  if (a && b) return COHORT_STRENGTH[a] >= COHORT_STRENGTH[b] ? a : b;
-  return a || b;
 }
 
 function getSourcePool() {
   const all = currentCourses();
-  if (state.source === 'course') return all.filter(c => c.cohortByCourse).map(c => ({ ...c, _cohort: c.cohortByCourse, _badge: 'Course match' }));
-  if (state.source === 'career') return all.filter(c => c.cohortByCareer).map(c => ({ ...c, _cohort: c.cohortByCareer, _badge: 'Career match' }));
-  // both — only courses that match BOTH course requirement AND career preference
-  return all.filter(c => c.cohortByCourse && c.cohortByCareer).map(c => ({ ...c, _cohort: mergedCohort(c), _badge: 'Course + career match' }));
+  if (state.source === 'course') return all.filter(c => c.cohortByCourse).map(c => ({ ...c, _cohort: c.cohortByCourse }));
+  return all.filter(c => c.cohortByCareer).map(c => ({ ...c, _cohort: c.cohortByCareer }));
 }
 
 function getFilteredPool() {
@@ -362,12 +345,8 @@ function careerPathGroups(courses) {
     map.get(c.careerPath).push(c);
   });
   return [...map.entries()]
-    .map(([path, list]) => ({
-      path,
-      count: list.length,
-      matchPercent: Math.round(list.reduce((sum, c) => sum + COHORT_STRENGTH[c.cohortByCareer], 0) / list.length / 6 * 100),
-    }))
-    .sort((a, b) => b.matchPercent - a.matchPercent);
+    .map(([path, list]) => ({ path, count: list.length }))
+    .sort((a, b) => b.count - a.count);
 }
 
 function pillsRowHtml(label, bodyHtml) {
@@ -379,35 +358,28 @@ function pillsRowHtml(label, bodyHtml) {
 }
 
 // Pills are source-aware: "Course requirement" groups by course name, "Career preference" groups
-// by the career domain each matched course actually leads to (with a match % per domain), "Both"
-// shows both dimensions stacked (rather than merging two different taxonomies into one row).
-// Display-only for now — not wired as a click filter, matching how this row behaved before.
+// by the career domain each matched course actually leads to. Display-only for now — not wired
+// as a click filter, matching how this row behaved before.
 function renderCourseTypePills() {
   const courses = currentCourses();
   const wrap = document.getElementById('courseTypePills');
-  const rows = [];
-  if (state.source === 'course' || state.source === 'both') {
+  if (state.source === 'course') {
     const courseEntries = groupCounts(courses.filter(c => c.cohortByCourse), 'name');
     const body = courseEntries.length === 0
       ? `<div class="text-xs text-text-muted italic">No course-requirement matches for this student.</div>`
       : `<div class="flex items-center gap-2 flex-wrap">${courseEntries.map(([name, count], i) => `
           <span class="pill ${i === 0 ? 'pill-active' : ''}">${name} <span class="opacity-60">(${count})</span></span>
         `).join('')}</div>`;
-    rows.push(pillsRowHtml('Course type', body));
+    wrap.innerHTML = pillsRowHtml('Course type', body);
+    return;
   }
-  if (state.source === 'career' || state.source === 'both') {
-    const careerEntries = careerPathGroups(courses.filter(c => c.cohortByCareer));
-    const body = careerEntries.length === 0
-      ? `<div class="text-xs text-text-muted italic">No career-preference matches to group by domain.</div>`
-      : `<div class="flex items-center gap-2 flex-wrap">${careerEntries.map((e, i) => `
-          <span class="pill career-pill ${i === 0 ? 'pill-active' : ''}">${e.path}
-            <span class="match-pct">${e.matchPercent}% match</span>
-            <span class="opacity-60">(${e.count})</span>
-          </span>
-        `).join('')}</div>`;
-    rows.push(pillsRowHtml('Career path', body));
-  }
-  wrap.innerHTML = rows.join('');
+  const careerEntries = careerPathGroups(courses.filter(c => c.cohortByCareer));
+  const body = careerEntries.length === 0
+    ? `<div class="text-xs text-text-muted italic">No career-preference matches to group by domain.</div>`
+    : `<div class="flex items-center gap-2 flex-wrap">${careerEntries.map((e, i) => `
+        <span class="pill career-pill ${i === 0 ? 'pill-active' : ''}">${e.path} <span class="opacity-60">(${e.count})</span></span>
+      `).join('')}</div>`;
+  wrap.innerHTML = pillsRowHtml('Career path', body);
 }
 
 // Always-required fields still always constrain the search (no Match/F2F-style toggle to turn
@@ -523,11 +495,11 @@ function renderCIM() {
   }
 }
 
-const SOURCE_LABELS = { course: 'Course requirement', career: 'Career preference', both: 'Both' };
+const SOURCE_LABELS = { course: 'Course requirement', career: 'Career preference' };
 
 function sourceOrder(student) {
-  // Fresher: course requirement first. Experienced: career preference first. "Both" is always last.
-  return student.workExpMonths > 0 ? ['career', 'course', 'both'] : ['course', 'career', 'both'];
+  // Fresher: course requirement first. Experienced: career preference first.
+  return student.workExpMonths > 0 ? ['career', 'course'] : ['course', 'career'];
 }
 
 function renderSourceSelector() {
@@ -616,21 +588,8 @@ function accordionSection(key, title, countLabel, bodyHtml) {
     </div>`;
 }
 
-// Recomputes just the college results list (not the whole accordion) so the search input never
-// gets torn down and rebuilt mid-keystroke — that would steal focus/cursor position every time.
-function renderCollegeList() {
-  const allMatches = [...new Set(currentCourses().map(c => c.university))].filter(u => u.toLowerCase().includes(state.collegeSearch.toLowerCase()));
-  const shown = allMatches.slice(0, 5);
-  const remaining = allMatches.length - shown.length;
-  const listEl = document.getElementById('collegeList');
-  if (!listEl) return;
-  listEl.innerHTML = (shown.map(u => `<div class="college-item">${u}</div>`).join('') || `<div class="text-xs text-text-muted px-2 py-2">No colleges match.</div>`)
-    + (remaining > 0 ? `<div class="text-xs text-text-muted px-2 py-2 italic">+${remaining} more — refine your search to narrow down.</div>` : '');
-}
-
 function renderSidebar() {
   const countries = [...new Set(currentCourses().map(c => c.country))];
-  const collegeCount = new Set(currentCourses().map(c => c.university)).size;
 
   const countryBody = `
     <div class="flex flex-wrap gap-1.5">
@@ -638,21 +597,10 @@ function renderSidebar() {
       ${countries.map(c => `<button class="pill ${state.countryFilter === c ? 'pill-active' : ''}" data-country="${c}">${c}</button>`).join('')}
     </div>`;
 
-  const categoryBody = `
-    <select id="categoryFilter" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 bg-white cursor-pointer">
-      <option value="all">All categories</option>
-      <option value="stem">STEM</option>
-      <option value="business">Business</option>
-    </select>`;
-
-  const collegesBody = `
-    <input id="collegeSearch" type="text" placeholder="Search colleges…" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 mb-2" />
-    <div id="collegeList" class="space-y-0.5"></div>`;
-
   const otherBody = `
     <label class="flex items-center gap-2 text-sm cursor-pointer mb-2">
       <input type="checkbox" id="partneredOnly" class="pretty w-4 h-4 cursor-pointer" ${state.partneredOnly ? 'checked' : ''} />
-      Partnered Courses
+      Free Service Courses
     </label>
     <label class="flex items-center gap-2 text-sm cursor-pointer">
       <input type="checkbox" id="scholarshipOnly" class="pretty w-4 h-4 cursor-pointer" ${state.scholarshipOnly ? 'checked' : ''} />
@@ -662,8 +610,6 @@ function renderSidebar() {
   const wrap = document.getElementById('filterAccordion');
   wrap.innerHTML = [
     accordionSection('country', 'Country', null, countryBody),
-    accordionSection('category', 'Course Category', null, categoryBody),
-    accordionSection('colleges', 'Colleges', collegeCount, collegesBody),
     accordionSection('other', 'Other preferences', null, otherBody),
   ].join('');
 
@@ -672,22 +618,18 @@ function renderSidebar() {
   });
   wrap.querySelectorAll('[data-country]').forEach(b => b.onclick = () => { state.countryFilter = b.dataset.country || null; renderAll(); });
 
-  const categorySelect = document.getElementById('categoryFilter');
-  if (categorySelect) {
-    categorySelect.value = state.categoryFilter;
-    categorySelect.onchange = (e) => { state.categoryFilter = e.target.value; renderAll(); };
-  }
-  const collegeSearchInput = document.getElementById('collegeSearch');
-  if (collegeSearchInput) {
-    collegeSearchInput.value = state.collegeSearch;
-    collegeSearchInput.oninput = (e) => { state.collegeSearch = e.target.value; renderCollegeList(); };
-  }
-  renderCollegeList();
-
   const partneredCb = document.getElementById('partneredOnly');
   if (partneredCb) partneredCb.onchange = (e) => { state.partneredOnly = e.target.checked; renderAll(); };
   const scholarshipCb = document.getElementById('scholarshipOnly');
   if (scholarshipCb) scholarshipCb.onchange = (e) => { state.scholarshipOnly = e.target.checked; renderAll(); };
+
+  // Global Search lives outside the accordion (static in HTML) so it never gets torn down and
+  // rebuilt mid-keystroke — that would steal focus/cursor position every time.
+  const globalSearchInput = document.getElementById('globalSearch');
+  if (globalSearchInput) {
+    globalSearchInput.value = state.globalSearch;
+    globalSearchInput.oninput = (e) => { state.globalSearch = e.target.value; renderResults(); renderCohortTabs(); };
+  }
 }
 
 function cohortBadgeLabel(course) {
@@ -698,28 +640,41 @@ function cohortBadgeLabel(course) {
   return COHORT_LABEL[course._cohort];
 }
 
+// Deterministic placeholder logo (no real brand assets available in this prototype) — same
+// university always gets the same letter + color, so it reads as a stable identity, not noise.
+const LOGO_COLORS = ['#4338CA', '#0369A1', '#B45309', '#15803D', '#BE185D', '#5B21B6', '#0F766E', '#9D174D'];
+function universityLogoHtml(university) {
+  let hash = 0;
+  for (let i = 0; i < university.length; i++) hash = (hash * 31 + university.charCodeAt(i)) >>> 0;
+  const color = LOGO_COLORS[hash % LOGO_COLORS.length];
+  return `<div class="uni-logo" style="background:${color}">${university.charAt(0).toUpperCase()}</div>`;
+}
+
 function courseCard(course) {
   const inShortlist = state.shortlist.has(course.id);
-  const badgeHtml = state.source === 'both' ? `<span class="source-badge">${course._badge}</span>` : '';
-  const outcomeHtml = (state.source !== 'course' && course.careerPath) ? `<div class="outcome-tag">→ ${course.careerPath}</div>` : '';
+  const outcomeHtml = (state.source === 'career' && course.careerPath) ? `<div class="outcome-tag">→ ${course.careerPath}</div>` : '';
   return `
     <div class="course-card-sm ${inShortlist ? 'course-card-selected' : ''}" data-id="${course.id}">
       <div class="flex items-start justify-between gap-2">
         <div class="flex items-center gap-1 flex-wrap min-w-0">
           <span class="cohort-badge">${cohortBadgeLabel(course)}</span>
-          ${badgeHtml}
         </div>
         <label class="course-check shrink-0">
           <input type="checkbox" data-id="${course.id}" ${inShortlist ? 'checked' : ''} />
           <span></span>
         </label>
       </div>
-      <div class="font-semibold text-[13px] text-text-main leading-snug mt-1 truncate" title="${course.name}">${course.name}</div>
-      <div class="text-[11px] text-text-muted truncate">${course.university} · ${course.country}</div>
+      <div class="flex items-center gap-1.5 mt-1.5 min-w-0">
+        ${universityLogoHtml(course.university)}
+        <div class="min-w-0">
+          <div class="font-semibold text-[13px] text-text-main leading-snug truncate" title="${course.name}">${course.name}</div>
+          <div class="text-[11px] text-text-muted truncate">${course.university} · ${course.country}</div>
+        </div>
+      </div>
       ${outcomeHtml}
       <div class="flex items-center justify-between mt-1.5 gap-1">
         <span class="px-1.5 py-0.5 rounded text-[10px] font-medium ${intakeClasses(course.intakeStatus)}">${course.intakeStatus}</span>
-        ${course.partnered ? '<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-50 text-indigo-700">Partnered</span>' : ''}
+        <span class="px-1.5 py-0.5 rounded text-[10px] font-medium ${course.partnered ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-600'}">${course.partnered ? 'Free Service' : 'Paid Service'}</span>
         <span class="text-[10px] text-text-muted font-mono ml-auto">QS #${course.qsRank}</span>
       </div>
       <div class="flex items-center justify-between mt-1 text-[11px] font-mono">
@@ -733,19 +688,13 @@ function emptyStateHtml() {
   if (state.flexibleMode === 'asked') {
     return emptyBlock("No exact matches found. Try 'With constraint' instead.");
   }
-  if (state.source === 'both') {
-    const rawBothPool = currentCourses().filter(c => c.cohortByCourse && c.cohortByCareer);
-    if (rawBothPool.length === 0) {
-      return emptyBlock("No courses match both this student's course requirement and career preference with current filters. Try 'Course requirement' or 'Career preference' individually, or adjust filters.");
-    }
-  }
   if (state.source === 'career' && !currentStudent().hasCareerPreference) {
-    return emptyBlock("No courses match this student's career preference with current filters. Try 'Course requirement' or 'Both', or adjust filters.");
+    return emptyBlock("No courses match this student's career preference with current filters. Try 'Course requirement', or adjust filters.");
   }
   if (state.source === 'career') {
     const rawCareerPool = currentCourses().filter(c => c.cohortByCareer);
     if (rawCareerPool.length === 0) {
-      return emptyBlock("No courses match this student's career preference with current filters. Try 'Course requirement' or 'Both', or adjust filters.");
+      return emptyBlock("No courses match this student's career preference with current filters. Try 'Course requirement', or adjust filters.");
     }
   }
   return emptyBlock('No results found.');

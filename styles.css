@@ -18,9 +18,7 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 .pill:hover { background: #E2E8F0; }
 .pill-active { background: #FFF7ED; color: #C2410C; border-color: #FDBA74; font-weight: 600; }
 
-/* Career-path pills carry a match % badge */
 .career-pill { display: inline-flex; align-items: center; gap: 6px; }
-.match-pct { font-size: 0.68rem; font-weight: 700; color: #16A34A; }
 
 /* Toggle switch */
 .switch { position: relative; display: inline-block; width: 42px; height: 24px; flex-shrink: 0; }
@@ -63,9 +61,13 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 .course-card-selected { border-color: #EA580C; box-shadow: 0 0 0 1px #EA580C; }
 
 .cohort-badge { font-size: 0.63rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: #EEF2FF; color: #4338CA; }
-.source-badge { font-size: 0.63rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: #FFF7ED; color: #C2410C; }
 .cim-tag { font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #0C1A2E; color: white; letter-spacing: .02em; }
 .outcome-tag { font-size: 0.68rem; font-weight: 500; color: #16A34A; margin-top: 2px; }
+
+.uni-logo {
+  width: 28px; height: 28px; border-radius: 6px; color: white; font-weight: 700; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
 
 .course-check { position: relative; display: inline-flex; width: 22px; height: 22px; cursor: pointer; }
 .course-check input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
@@ -77,9 +79,6 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
   content: ""; position: absolute; left: 6px; top: 2px; width: 5px; height: 10px;
   border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg);
 }
-
-.college-item { font-size: 0.82rem; color: #334155; padding: 6px 8px; border-radius: 6px; cursor: default; }
-.college-item:hover { background: #F1F5F9; }
 
 /* Sidebar FILTERS accordion */
 .filter-accordion-header {
