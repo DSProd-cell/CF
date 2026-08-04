@@ -20,6 +20,13 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 
 .career-pill { display: inline-flex; align-items: center; gap: 6px; }
 
+.f2f-pill {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.68rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; border: 1px solid;
+}
+.f2f-pill.low { background: #FFF1F2; color: #E11D48; border-color: #FECDD3; }
+.f2f-pill.high { background: #ECFDF5; color: #15803D; border-color: #A7F3D0; }
+
 /* Toggle switch */
 .switch { position: relative; display: inline-block; width: 42px; height: 24px; flex-shrink: 0; }
 .switch input { opacity: 0; width: 0; height: 0; }

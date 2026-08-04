@@ -183,6 +183,7 @@ const state = {
   globalSearch: '',          // sidebar "Global Search" — filters course/university/career text live
   sidebarOpen: { country: false, education: false, other: false }, // FILTERS accordion — collapsed by default
   eduPref: { ug: false, pg: false }, // no boxes checked = no filtering
+  careerMatchWeighted: true, // "Career match" toggle — on by default; drives the Low/High F2F indicator
   courseSearch: '',          // applied — drives filtering
   pendingCourseSearch: '',   // draft — bound to the search input, committed on Apply
   partneredOnly: false,
@@ -219,6 +220,7 @@ function switchStudent(id) {
   state.globalSearch = '';
   state.sidebarOpen = { country: false, education: false, other: false };
   state.eduPref = { ug: false, pg: false };
+  state.careerMatchWeighted = true;
   state.courseSearch = '';
   state.pendingCourseSearch = '';
   state.partneredOnly = false;
@@ -390,6 +392,18 @@ function renderCourseTypePills() {
   wrap.innerHTML = pillsRowHtml('Career path', body);
 }
 
+// "Career match" toggle lives in the Flexible fields header (static markup) — just updates its
+// own Low/High F2F indicator pill.
+function renderCareerMatchToggle() {
+  const weighted = state.careerMatchWeighted;
+  document.getElementById('careerMatchToggle').checked = weighted;
+  const pill = document.getElementById('careerMatchPill');
+  pill.className = `f2f-pill ${weighted ? 'high' : 'low'}`;
+  pill.innerHTML = `
+    <svg viewBox="0 0 24 24" fill="currentColor" class="w-2.5 h-2.5">${weighted ? '<path d="M12 4l8 12H4z"/>' : '<path d="M12 20L4 8h16z"/>'}</svg>
+    ${weighted ? 'High F2F' : 'Low F2F'}`;
+}
+
 // Always-required fields still always constrain the search (no Match/F2F-style toggle to turn
 // them off) — but they're editable inputs, not read-only locked chips.
 function renderAlwaysRequired() {
@@ -418,7 +432,6 @@ function renderAlwaysRequired() {
 
 function renderFlexible() {
   const f = state.pendingFlexible;
-  document.getElementById('flexSwitch').checked = state.flexibleMode === 'asked';
   document.getElementById('intakeFlex').value = f.intake;
   document.getElementById('backlogs').value = f.backlogs;
   document.getElementById('workExp').value = f.workExp;
@@ -815,6 +828,7 @@ function renderAll() {
   renderCourseTypePills();
   renderAlwaysRequired();
   renderFlexible();
+  renderCareerMatchToggle();
   renderCIM();
   renderSourceSelector();
   renderSidebar();
@@ -833,9 +847,9 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFlexible();
   });
 
-  document.getElementById('flexSwitch').addEventListener('change', (e) => {
-    state.flexibleMode = e.target.checked ? 'asked' : 'availability';
-    renderAll();
+  document.getElementById('careerMatchToggle').addEventListener('change', (e) => {
+    state.careerMatchWeighted = e.target.checked;
+    renderCareerMatchToggle();
   });
 
   ['backlogs', 'workExp', 'grade'].forEach(id => {
