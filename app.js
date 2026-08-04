@@ -432,7 +432,7 @@ function renderFlexible() {
 
   document.getElementById('flexPanelBody').classList.toggle('hidden', !state.flexPanelOpen);
   document.getElementById('flexPanelChevron').classList.toggle('rotate-90', state.flexPanelOpen);
-  document.getElementById('flexPanelSummary').textContent = state.flexPanelOpen ? '' : `(${disabled ? 'Student to join F2F' : 'With constraint'})`;
+  document.getElementById('flexPanelSummary').textContent = state.flexPanelOpen ? '' : (disabled ? '(Recommended: send ISL as-is for more impact)' : '(With constraint)');
 
   renderApplyState();
 }
