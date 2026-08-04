@@ -34,13 +34,15 @@ const STUDENTS = {
     workExpMonths: 14,
     careerPreference: 'Business Analyst',
     hasCareerPreference: true,
-    flexibleDefaults: { intake: 'Sep 2026', maxTuition: 30000, backlogs: 1, workExp: 14, grade: 72 },
-    courseTypePills: [{ label: 'MSc Business Analytics', count: 15 }, { label: 'MSc Management Analytics', count: 3 }],
-    cim: {
-      id: 'cim-priya', name: 'MSc Financial Analytics', university: 'London School of Economics', country: 'UK',
-      qsRank: 45, durationMonths: 12, tuitionFeeUSD: 34500, scholarshipCount: 2, safety: 'Moderate',
-      intakeStatus: 'Closing soon', partnered: true,
-    },
+    budgetDefault: 30000,
+    flexibleDefaults: { intake: 'Sep 2026', backlogs: 1, workExp: 14, grade: 72, category: 'all' },
+    cimList: [
+      { id: 'cim-priya-1', name: 'MSc Financial Analytics', university: 'London School of Economics', country: 'UK', qsRank: 45, durationMonths: 12, tuitionFeeUSD: 34500, scholarshipCount: 2, intakeStatus: 'Closing soon', partnered: true },
+      { id: 'cim-priya-2', name: 'MSc International Business', university: 'INSEAD', country: 'France', qsRank: 12, durationMonths: 10, tuitionFeeUSD: 52000, scholarshipCount: 1, intakeStatus: 'Waitlist', partnered: false },
+      { id: 'cim-priya-3', name: 'MSc Business Analytics', university: 'Imperial College London', country: 'UK', qsRank: 8, durationMonths: 12, tuitionFeeUSD: 39500, scholarshipCount: 0, intakeStatus: 'Open', partnered: false },
+      { id: 'cim-priya-4', name: 'MSc Strategic Management', university: 'IE Business School', country: 'Spain', qsRank: 33, durationMonths: 11, tuitionFeeUSD: 41000, scholarshipCount: 1, intakeStatus: 'Open', partnered: true },
+      { id: 'cim-priya-5', name: 'MSc Business Analytics', university: 'NUS Business School', country: 'Singapore', qsRank: 19, durationMonths: 17, tuitionFeeUSD: 36000, scholarshipCount: 2, intakeStatus: 'Open', partnered: false },
+    ],
   },
   arjun: {
     id: 'arjun',
@@ -53,13 +55,15 @@ const STUDENTS = {
     workExpMonths: 0,
     careerPreference: null,
     hasCareerPreference: false,
-    flexibleDefaults: { intake: 'Jan 2027', maxTuition: 24000, backlogs: 0, workExp: 0, grade: 68 },
-    courseTypePills: [{ label: 'MSc Computer Science', count: 14 }],
-    cim: {
-      id: 'cim-arjun', name: 'MSc Artificial Intelligence', university: 'Carnegie Mellon University', country: 'USA',
-      qsRank: 22, durationMonths: 24, tuitionFeeUSD: 41000, scholarshipCount: 0, safety: 'Moderate',
-      intakeStatus: 'Open', partnered: false,
-    },
+    budgetDefault: 24000,
+    flexibleDefaults: { intake: 'Jan 2027', backlogs: 0, workExp: 0, grade: 68, category: 'all' },
+    cimList: [
+      { id: 'cim-arjun-1', name: 'MSc Artificial Intelligence', university: 'Carnegie Mellon University', country: 'USA', qsRank: 22, durationMonths: 24, tuitionFeeUSD: 41000, scholarshipCount: 0, intakeStatus: 'Open', partnered: false },
+      { id: 'cim-arjun-2', name: 'MSc Computer Science', university: 'Stanford University', country: 'USA', qsRank: 3, durationMonths: 18, tuitionFeeUSD: 58000, scholarshipCount: 0, intakeStatus: 'Waitlist', partnered: false },
+      { id: 'cim-arjun-3', name: 'MSc Machine Learning', university: 'University of Cambridge', country: 'UK', qsRank: 2, durationMonths: 12, tuitionFeeUSD: 44000, scholarshipCount: 1, intakeStatus: 'Waitlist', partnered: false },
+      { id: 'cim-arjun-4', name: 'MSc Computer Science', university: 'ETH Zurich', country: 'Switzerland', qsRank: 7, durationMonths: 18, tuitionFeeUSD: 16500, scholarshipCount: 0, intakeStatus: 'Open', partnered: false },
+      { id: 'cim-arjun-5', name: 'MSc Software Engineering', university: 'Georgia Institute of Technology', country: 'USA', qsRank: 47, durationMonths: 18, tuitionFeeUSD: 29500, scholarshipCount: 1, intakeStatus: 'Open', partnered: true },
+    ],
   },
   sana: {
     id: 'sana',
@@ -72,13 +76,15 @@ const STUDENTS = {
     workExpMonths: 8,
     careerPreference: 'UX Designer',
     hasCareerPreference: true,
-    flexibleDefaults: { intake: 'Sep 2026', maxTuition: 28000, backlogs: 2, workExp: 8, grade: 65 },
-    courseTypePills: [{ label: 'MSc Robotics Engineering', count: 13 }],
-    cim: {
-      id: 'cim-sana', name: 'MSc Robotics & AI', university: 'Carnegie Mellon University', country: 'USA',
-      qsRank: 22, durationMonths: 24, tuitionFeeUSD: 43500, scholarshipCount: 1, safety: 'Ambitious',
-      intakeStatus: 'Waitlist', partnered: false,
-    },
+    budgetDefault: 28000,
+    flexibleDefaults: { intake: 'Sep 2026', backlogs: 2, workExp: 8, grade: 65, category: 'all' },
+    cimList: [
+      { id: 'cim-sana-1', name: 'MSc Robotics & AI', university: 'Carnegie Mellon University', country: 'USA', qsRank: 22, durationMonths: 24, tuitionFeeUSD: 43500, scholarshipCount: 1, intakeStatus: 'Waitlist', partnered: false },
+      { id: 'cim-sana-2', name: 'MSc Robotics', university: 'Massachusetts Institute of Technology', country: 'USA', qsRank: 1, durationMonths: 24, tuitionFeeUSD: 61000, scholarshipCount: 0, intakeStatus: 'Waitlist', partnered: false },
+      { id: 'cim-sana-3', name: 'MSc Autonomous Systems', university: 'University of Oxford', country: 'UK', qsRank: 4, durationMonths: 12, tuitionFeeUSD: 40500, scholarshipCount: 0, intakeStatus: 'Open', partnered: false },
+      { id: 'cim-sana-4', name: 'MSc Robotics Engineering', university: 'EPFL', country: 'Switzerland', qsRank: 14, durationMonths: 18, tuitionFeeUSD: 14500, scholarshipCount: 1, intakeStatus: 'Open', partnered: false },
+      { id: 'cim-sana-5', name: 'MSc Mechatronics', university: 'Stanford University', country: 'USA', qsRank: 3, durationMonths: 18, tuitionFeeUSD: 57000, scholarshipCount: 0, intakeStatus: 'Closing soon', partnered: false },
+    ],
   },
   karan: {
     id: 'karan',
@@ -91,13 +97,9 @@ const STUDENTS = {
     workExpMonths: 3,
     careerPreference: null,
     hasCareerPreference: false,
-    flexibleDefaults: { intake: 'May 2027', maxTuition: 25000, backlogs: 0, workExp: 3, grade: 60 },
-    courseTypePills: [{ label: 'MSc Quantum Computing', count: 0 }],
-    cim: {
-      id: 'cim-karan', name: 'MSc Data Science', university: 'Stanford University', country: 'USA',
-      qsRank: 3, durationMonths: 18, tuitionFeeUSD: 58000, scholarshipCount: 0, safety: 'Ambitious',
-      intakeStatus: 'Waitlist', partnered: false,
-    },
+    budgetDefault: 25000,
+    flexibleDefaults: { intake: 'May 2027', backlogs: 0, workExp: 3, grade: 60, category: 'all' },
+    cimList: [], // blank student — no CIM entries either, consistent with the empty-state purpose
   },
 };
 
@@ -105,59 +107,59 @@ const STUDENTS = {
 // cohortByCourse / cohortByCareer: cohort tag string or null (not in that source's pool)
 const COURSES = {
   priya: [
-    { id:'p1', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:12, tuitionFeeUSD:29800, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:3, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:'exact' },
-    { id:'p2', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'Warwick Business School', country:'UK', qsRank:64, durationMonths:12, tuitionFeeUSD:33200, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:'related' },
-    { id:'p3', intakeTerm:'Sep 2026', name:'MSc Management Analytics', university:'HEC Montreal', country:'Canada', qsRank:88, durationMonths:16, tuitionFeeUSD:26500, backlogsAllowed:2, minWorkExpMonths:6, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:'exact' },
-    { id:'p4', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Monash University', country:'Australia', qsRank:42, durationMonths:24, tuitionFeeUSD:31000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Closing soon', cohortByCourse:'similar', cohortByCareer:null },
-    { id:'p5', intakeTerm:'Jan 2027', name:'MSc Data Analytics', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:18, tuitionFeeUSD:32500, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:68, scholarshipCount:2, safety:'Ambitious', partnered:true, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'exact' },
-    { id:'p6', intakeTerm:'Sep 2026', name:'MSc Business Analytics (Extended)', university:'Trinity College Dublin', country:'Ireland', qsRank:98, durationMonths:14, tuitionFeeUSD:24800, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
-    { id:'p7', intakeTerm:'Sep 2026', name:'MSc Business Intelligence', university:'Imperial College London', country:'UK', qsRank:8, durationMonths:12, tuitionFeeUSD:38000, backlogsAllowed:0, minWorkExpMonths:18, minGradePercent:75, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:null, cohortByCareer:'related' },
-    { id:'p8', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'University of Sydney', country:'Australia', qsRank:19, durationMonths:24, tuitionFeeUSD:33800, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
-    { id:'p9', intakeTerm:'Sep 2026', name:'Master of Business Analytics', university:'University of British Columbia', country:'Canada', qsRank:34, durationMonths:12, tuitionFeeUSD:30500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:68, scholarshipCount:2, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:'similar' },
-    { id:'p10', intakeTerm:'Jan 2027', name:'MSc Data Science for Business', university:'ESSEC Business School', country:'France', qsRank:76, durationMonths:16, tuitionFeeUSD:27900, backlogsAllowed:2, minWorkExpMonths:6, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'similarRelaxed' },
-    { id:'p11', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'York University', country:'Canada', qsRank:210, durationMonths:12, tuitionFeeUSD:22500, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
-    { id:'p12', intakeTerm:'Sep 2026', name:'MSc Analytics & Management', university:'Cambridge Judge Business School', country:'UK', qsRank:5, durationMonths:12, tuitionFeeUSD:42000, backlogsAllowed:0, minWorkExpMonths:24, minGradePercent:80, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'related', cohortByCareer:'related' },
-    { id:'p13', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Rotterdam School of Management', country:'Netherlands', qsRank:60, durationMonths:12, tuitionFeeUSD:26000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
-    { id:'p14', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Leeds', country:'UK', qsRank:75, durationMonths:12, tuitionFeeUSD:28500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
-    { id:'p15', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Deakin University', country:'Australia', qsRank:250, durationMonths:24, tuitionFeeUSD:27500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
-    { id:'p16', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Alberta', country:'Canada', qsRank:111, durationMonths:16, tuitionFeeUSD:23500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:58, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
-    { id:'p17', intakeTerm:'Sep 2026', name:'MSc Marketing Analytics', university:'Bocconi University', country:'Italy', qsRank:150, durationMonths:12, tuitionFeeUSD:31000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:70, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Waitlist', cohortByCourse:null, cohortByCareer:'similar' },
-    { id:'p18', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'Copenhagen Business School', country:'Denmark', qsRank:180, durationMonths:12, tuitionFeeUSD:20000, backlogsAllowed:1, minWorkExpMonths:6, minGradePercent:62, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'similarRelaxed' },
-    { id:'p19', intakeTerm:'Sep 2026', name:'MSc Data-Driven Business', university:'Erasmus University Rotterdam', country:'Netherlands', qsRank:152, durationMonths:12, tuitionFeeUSD:24000, backlogsAllowed:1, minWorkExpMonths:6, minGradePercent:65, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partial' },
-    { id:'p20', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Auckland', country:'New Zealand', qsRank:87, durationMonths:18, tuitionFeeUSD:26500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partialRelaxed' },
-    { id:'p21', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'University of Bath', country:'UK', qsRank:148, durationMonths:12, tuitionFeeUSD:33000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:68, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partial' },
-    { id:'p22', intakeTerm:'Jan 2027', name:'MSc Marketing & Business Analytics', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:34500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:70, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Closing soon', cohortByCourse:null, cohortByCareer:'partialRelaxed' },
+    { id:'p1', category:'business', careerPath:'Business Analyst', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:12, tuitionFeeUSD:29800, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:3, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:'exact' },
+    { id:'p2', category:'business', careerPath:'Data Analyst', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'Warwick Business School', country:'UK', qsRank:64, durationMonths:12, tuitionFeeUSD:33200, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:'related' },
+    { id:'p3', category:'business', careerPath:'Business Analyst', intakeTerm:'Sep 2026', name:'MSc Management Analytics', university:'HEC Montreal', country:'Canada', qsRank:88, durationMonths:16, tuitionFeeUSD:26500, backlogsAllowed:2, minWorkExpMonths:6, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:'exact' },
+    { id:'p4', category:'business', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Monash University', country:'Australia', qsRank:42, durationMonths:24, tuitionFeeUSD:31000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Closing soon', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'p5', category:'business', careerPath:'Business Analyst', intakeTerm:'Jan 2027', name:'MSc Data Analytics', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:18, tuitionFeeUSD:32500, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:68, scholarshipCount:2, safety:'Ambitious', partnered:true, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'exact' },
+    { id:'p6', category:'business', intakeTerm:'Sep 2026', name:'MSc Business Analytics (Extended)', university:'Trinity College Dublin', country:'Ireland', qsRank:98, durationMonths:14, tuitionFeeUSD:24800, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'p7', category:'business', careerPath:'Management Consultant', intakeTerm:'Sep 2026', name:'MSc Business Intelligence', university:'Imperial College London', country:'UK', qsRank:8, durationMonths:12, tuitionFeeUSD:38000, backlogsAllowed:0, minWorkExpMonths:18, minGradePercent:75, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:null, cohortByCareer:'related' },
+    { id:'p8', category:'business', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'University of Sydney', country:'Australia', qsRank:19, durationMonths:24, tuitionFeeUSD:33800, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'p9', category:'business', careerPath:'Data Analyst', intakeTerm:'Sep 2026', name:'Master of Business Analytics', university:'University of British Columbia', country:'Canada', qsRank:34, durationMonths:12, tuitionFeeUSD:30500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:68, scholarshipCount:2, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:'similar' },
+    { id:'p10', category:'business', careerPath:'Marketing Analyst', intakeTerm:'Jan 2027', name:'MSc Data Science for Business', university:'ESSEC Business School', country:'France', qsRank:76, durationMonths:16, tuitionFeeUSD:27900, backlogsAllowed:2, minWorkExpMonths:6, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'similarRelaxed' },
+    { id:'p11', category:'business', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'York University', country:'Canada', qsRank:210, durationMonths:12, tuitionFeeUSD:22500, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'p12', category:'business', careerPath:'Financial Analyst', intakeTerm:'Sep 2026', name:'MSc Analytics & Management', university:'Cambridge Judge Business School', country:'UK', qsRank:5, durationMonths:12, tuitionFeeUSD:42000, backlogsAllowed:0, minWorkExpMonths:24, minGradePercent:80, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'related', cohortByCareer:'related' },
+    { id:'p13', category:'business', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Rotterdam School of Management', country:'Netherlands', qsRank:60, durationMonths:12, tuitionFeeUSD:26000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'p14', category:'business', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Leeds', country:'UK', qsRank:75, durationMonths:12, tuitionFeeUSD:28500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'p15', category:'business', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'Deakin University', country:'Australia', qsRank:250, durationMonths:24, tuitionFeeUSD:27500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'p16', category:'business', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Alberta', country:'Canada', qsRank:111, durationMonths:16, tuitionFeeUSD:23500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:58, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'p17', category:'business', careerPath:'Marketing Analyst', intakeTerm:'Sep 2026', name:'MSc Marketing Analytics', university:'Bocconi University', country:'Italy', qsRank:150, durationMonths:12, tuitionFeeUSD:31000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:70, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Waitlist', cohortByCourse:null, cohortByCareer:'similar' },
+    { id:'p18', category:'business', careerPath:'Business Analyst', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'Copenhagen Business School', country:'Denmark', qsRank:180, durationMonths:12, tuitionFeeUSD:20000, backlogsAllowed:1, minWorkExpMonths:6, minGradePercent:62, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'similarRelaxed' },
+    { id:'p19', category:'business', careerPath:'Data Analyst', intakeTerm:'Sep 2026', name:'MSc Data-Driven Business', university:'Erasmus University Rotterdam', country:'Netherlands', qsRank:152, durationMonths:12, tuitionFeeUSD:24000, backlogsAllowed:1, minWorkExpMonths:6, minGradePercent:65, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partial' },
+    { id:'p20', category:'business', careerPath:'Business Analyst', intakeTerm:'Jan 2027', name:'MSc Business Analytics', university:'University of Auckland', country:'New Zealand', qsRank:87, durationMonths:18, tuitionFeeUSD:26500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partialRelaxed' },
+    { id:'p21', category:'business', careerPath:'Management Consultant', intakeTerm:'Sep 2026', name:'MSc Business Analytics', university:'University of Bath', country:'UK', qsRank:148, durationMonths:12, tuitionFeeUSD:33000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:68, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:null, cohortByCareer:'partial' },
+    { id:'p22', category:'business', careerPath:'Marketing Analyst', intakeTerm:'Jan 2027', name:'MSc Marketing & Business Analytics', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:34500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:70, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Closing soon', cohortByCourse:null, cohortByCareer:'partialRelaxed' },
   ],
   arjun: [
-    { id:'a1', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:20, tuitionFeeUSD:28500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:2, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
-    { id:'a2', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:26800, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
-    { id:'a3', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Arizona State University', country:'USA', qsRank:213, durationMonths:18, tuitionFeeUSD:24000, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
-    { id:'a4', intakeTerm:'Jan 2027', name:'MSc Computer Science (AI Specialization)', university:'University of Edinburgh', country:'UK', qsRank:22, durationMonths:12, tuitionFeeUSD:33500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:72, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Closing soon', cohortByCourse:'related', cohortByCareer:null },
-    { id:'a5', intakeTerm:'Jan 2027', name:'MSc Software Engineering', university:'University of Waterloo', country:'Canada', qsRank:112, durationMonths:16, tuitionFeeUSD:27200, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:0, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
-    { id:'a6', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'Dublin City University', country:'Ireland', qsRank:401, durationMonths:12, tuitionFeeUSD:19500, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
-    { id:'a7', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'RWTH Aachen', country:'Germany', qsRank:106, durationMonths:24, tuitionFeeUSD:9500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
-    { id:'a8', intakeTerm:'Jan 2027', name:'MSc Information Technology', university:'University of Sydney', country:'Australia', qsRank:19, durationMonths:24, tuitionFeeUSD:31500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
-    { id:'a9', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of British Columbia', country:'Canada', qsRank:34, durationMonths:20, tuitionFeeUSD:29500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
-    { id:'a10', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Trinity College Dublin', country:'Ireland', qsRank:81, durationMonths:12, tuitionFeeUSD:21500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:58, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
-    { id:'a11', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:24, tuitionFeeUSD:32500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
-    { id:'a12', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Technical University of Berlin', country:'Germany', qsRank:154, durationMonths:24, tuitionFeeUSD:7500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
-    { id:'a13', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Illinois Urbana-Champaign', country:'USA', qsRank:65, durationMonths:18, tuitionFeeUSD:30500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:72, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'exact', cohortByCareer:null },
-    { id:'a14', intakeTerm:'Sep 2026', name:'MSc Data Science', university:'University of Glasgow', country:'UK', qsRank:87, durationMonths:12, tuitionFeeUSD:25500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
+    { id:'a1', category:'stem', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:20, tuitionFeeUSD:28500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:2, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
+    { id:'a2', category:'stem', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:26800, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
+    { id:'a3', category:'stem', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Arizona State University', country:'USA', qsRank:213, durationMonths:18, tuitionFeeUSD:24000, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
+    { id:'a4', category:'stem', intakeTerm:'Jan 2027', name:'MSc Computer Science (AI Specialization)', university:'University of Edinburgh', country:'UK', qsRank:22, durationMonths:12, tuitionFeeUSD:33500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:72, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Closing soon', cohortByCourse:'related', cohortByCareer:null },
+    { id:'a5', category:'stem', intakeTerm:'Jan 2027', name:'MSc Software Engineering', university:'University of Waterloo', country:'Canada', qsRank:112, durationMonths:16, tuitionFeeUSD:27200, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:0, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'a6', category:'stem', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'Dublin City University', country:'Ireland', qsRank:401, durationMonths:12, tuitionFeeUSD:19500, backlogsAllowed:3, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:1, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'a7', category:'stem', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'RWTH Aachen', country:'Germany', qsRank:106, durationMonths:24, tuitionFeeUSD:9500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'a8', category:'stem', intakeTerm:'Jan 2027', name:'MSc Information Technology', university:'University of Sydney', country:'Australia', qsRank:19, durationMonths:24, tuitionFeeUSD:31500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'a9', category:'stem', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of British Columbia', country:'Canada', qsRank:34, durationMonths:20, tuitionFeeUSD:29500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'a10', category:'stem', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Trinity College Dublin', country:'Ireland', qsRank:81, durationMonths:12, tuitionFeeUSD:21500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:58, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'a11', category:'stem', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:24, tuitionFeeUSD:32500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'a12', category:'stem', intakeTerm:'Sep 2026', name:'MSc Computer Science', university:'Technical University of Berlin', country:'Germany', qsRank:154, durationMonths:24, tuitionFeeUSD:7500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'a13', category:'stem', intakeTerm:'Jan 2027', name:'MSc Computer Science', university:'University of Illinois Urbana-Champaign', country:'USA', qsRank:65, durationMonths:18, tuitionFeeUSD:30500, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:72, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'exact', cohortByCareer:null },
+    { id:'a14', category:'stem', intakeTerm:'Sep 2026', name:'MSc Data Science', university:'University of Glasgow', country:'UK', qsRank:87, durationMonths:12, tuitionFeeUSD:25500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
   ],
   sana: [
-    { id:'s1', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'ETH Zurich', country:'Switzerland', qsRank:7, durationMonths:24, tuitionFeeUSD:15800, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:78, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
-    { id:'s2', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'Technical University of Munich', country:'Germany', qsRank:37, durationMonths:24, tuitionFeeUSD:8500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:68, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
-    { id:'s3', intakeTerm:'Jan 2027', name:'MSc Robotics and Autonomous Systems', university:'Imperial College London', country:'UK', qsRank:8, durationMonths:12, tuitionFeeUSD:39500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:75, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'related', cohortByCareer:null },
-    { id:'s4', intakeTerm:'Sep 2026', name:'MSc Mechatronics and Robotics', university:'KTH Royal Institute of Technology', country:'Sweden', qsRank:98, durationMonths:24, tuitionFeeUSD:0, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
-    { id:'s5', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:18, tuitionFeeUSD:34500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
-    { id:'s6', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'Georgia Institute of Technology', country:'USA', qsRank:47, durationMonths:20, tuitionFeeUSD:36000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:72, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
-    { id:'s7', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:16, tuitionFeeUSD:30500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:68, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
-    { id:'s8', intakeTerm:'Jan 2027', name:'MSc Robotics Engineering', university:'National University of Singapore', country:'Singapore', qsRank:8, durationMonths:18, tuitionFeeUSD:25000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
-    { id:'s9', intakeTerm:'Sep 2026', name:'MSc Robotics & Automation', university:'TU Delft', country:'Netherlands', qsRank:47, durationMonths:24, tuitionFeeUSD:18500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
-    { id:'s10', intakeTerm:'Jan 2027', name:'MSc Robotics', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:33500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:72, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'partial', cohortByCareer:null },
-    { id:'s11', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'University of Bristol', country:'UK', qsRank:61, durationMonths:18, tuitionFeeUSD:29500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
-    { id:'s12', intakeTerm:'Jan 2027', name:'MSc Robotics', university:'Arizona State University', country:'USA', qsRank:213, durationMonths:20, tuitionFeeUSD:27000, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
-    { id:'s13', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'Carnegie Mellon University', country:'USA', qsRank:22, durationMonths:20, tuitionFeeUSD:42000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:78, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'exact', cohortByCareer:null },
+    { id:'s1', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'ETH Zurich', country:'Switzerland', qsRank:7, durationMonths:24, tuitionFeeUSD:15800, backlogsAllowed:0, minWorkExpMonths:0, minGradePercent:78, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
+    { id:'s2', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'Technical University of Munich', country:'Germany', qsRank:37, durationMonths:24, tuitionFeeUSD:8500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:68, scholarshipCount:0, safety:'Moderate', partnered:false, intakeStatus:'Open', cohortByCourse:'exact', cohortByCareer:null },
+    { id:'s3', category:'stem', intakeTerm:'Jan 2027', name:'MSc Robotics and Autonomous Systems', university:'Imperial College London', country:'UK', qsRank:8, durationMonths:12, tuitionFeeUSD:39500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:75, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'related', cohortByCareer:null },
+    { id:'s4', category:'stem', intakeTerm:'Sep 2026', name:'MSc Mechatronics and Robotics', university:'KTH Royal Institute of Technology', country:'Sweden', qsRank:98, durationMonths:24, tuitionFeeUSD:0, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'s5', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'University of Melbourne', country:'Australia', qsRank:37, durationMonths:18, tuitionFeeUSD:34500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:65, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'s6', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'Georgia Institute of Technology', country:'USA', qsRank:47, durationMonths:20, tuitionFeeUSD:36000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:72, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'s7', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics', university:'University of Toronto', country:'Canada', qsRank:21, durationMonths:16, tuitionFeeUSD:30500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:68, scholarshipCount:1, safety:'Moderate', partnered:true, intakeStatus:'Open', cohortByCourse:'related', cohortByCareer:null },
+    { id:'s8', category:'stem', intakeTerm:'Jan 2027', name:'MSc Robotics Engineering', university:'National University of Singapore', country:'Singapore', qsRank:8, durationMonths:18, tuitionFeeUSD:25000, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:70, scholarshipCount:1, safety:'Ambitious', partnered:false, intakeStatus:'Open', cohortByCourse:'similar', cohortByCareer:null },
+    { id:'s9', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics & Automation', university:'TU Delft', country:'Netherlands', qsRank:47, durationMonths:24, tuitionFeeUSD:18500, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:62, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'similarRelaxed', cohortByCareer:null },
+    { id:'s10', category:'stem', intakeTerm:'Jan 2027', name:'MSc Robotics', university:'University of Manchester', country:'UK', qsRank:34, durationMonths:12, tuitionFeeUSD:33500, backlogsAllowed:0, minWorkExpMonths:6, minGradePercent:72, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'partial', cohortByCareer:null },
+    { id:'s11', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'University of Bristol', country:'UK', qsRank:61, durationMonths:18, tuitionFeeUSD:29500, backlogsAllowed:1, minWorkExpMonths:0, minGradePercent:60, scholarshipCount:1, safety:'Safe', partnered:true, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'s12', category:'stem', intakeTerm:'Jan 2027', name:'MSc Robotics', university:'Arizona State University', country:'USA', qsRank:213, durationMonths:20, tuitionFeeUSD:27000, backlogsAllowed:2, minWorkExpMonths:0, minGradePercent:55, scholarshipCount:0, safety:'Safe', partnered:false, intakeStatus:'Open', cohortByCourse:'partialRelaxed', cohortByCareer:null },
+    { id:'s13', category:'stem', intakeTerm:'Sep 2026', name:'MSc Robotics Engineering', university:'Carnegie Mellon University', country:'USA', qsRank:22, durationMonths:20, tuitionFeeUSD:42000, backlogsAllowed:0, minWorkExpMonths:12, minGradePercent:78, scholarshipCount:0, safety:'Ambitious', partnered:false, intakeStatus:'Waitlist', cohortByCourse:'exact', cohortByCareer:null },
   ],
   // No matching courses at all — course requirement, career preference, and Both are all blank for this student.
   karan: [],
@@ -171,20 +173,26 @@ const state = {
   flexibleMode: 'asked', // 'availability' | 'asked' — defaults to F2F; counsellor opts into "With constraint"
   flexible: { ...STUDENTS.priya.flexibleDefaults },       // applied — drives filtering
   pendingFlexible: { ...STUDENTS.priya.flexibleDefaults }, // draft — bound to the inputs, committed on Apply
+  flexPanelOpen: false,      // Flexible fields panel is collapsed by default
+  required: requiredDefaults(STUDENTS.priya), // editable — Country / Course / Duration / Budget are still mandatory, just not locked
+  cimPanelOpen: false,       // CIM list is collapsed by default
+  cimRemovedIds: {},         // studentId -> Set of removed cimList ids
   cohortTab: 'all',
-  includeRelaxed: false,     // shown/used only when cohortTab is 'similar' or 'partial'
+  relaxedIncluded: { similar: false, partial: false }, // independent per bucket, so "All" can reflect either
   countryFilter: null,
   categoryFilter: 'all',
   collegeSearch: '',
-  courseSearch: '',
+  sidebarOpen: { country: false, category: false, colleges: false, other: false }, // FILTERS accordion — collapsed by default
+  courseSearch: '',          // applied — drives filtering
+  pendingCourseSearch: '',   // draft — bound to the search input, committed on Apply
   partneredOnly: false,
   scholarshipOnly: false,
   shortlist: new Set(),
-  cimRemoved: {},             // studentId -> bool
 };
 
 function currentStudent() { return STUDENTS[state.studentId]; }
 function currentCourses() { return COURSES[state.studentId]; }
+function requiredDefaults(student) { return { country: student.country.join(', '), course: student.courseRequirement, duration: student.duration, budget: student.budgetDefault }; }
 
 function computeDefaultSource(student) {
   if (!student.hasCareerPreference) return { source: 'course', reason: `No career preference on file for ${student.name} — defaulted to Course requirement.` };
@@ -201,28 +209,39 @@ function switchStudent(id) {
   state.flexibleMode = 'asked';
   state.flexible = { ...student.flexibleDefaults };
   state.pendingFlexible = { ...student.flexibleDefaults };
+  state.flexPanelOpen = false;
+  state.required = requiredDefaults(student);
+  state.cimPanelOpen = false;
+  if (!(id in state.cimRemovedIds)) state.cimRemovedIds[id] = new Set();
   state.cohortTab = 'all';
-  state.includeRelaxed = false;
+  state.relaxedIncluded = { similar: false, partial: false };
   state.countryFilter = null;
   state.categoryFilter = 'all';
+  state.sidebarOpen = { country: false, category: false, colleges: false, other: false };
   state.collegeSearch = '';
   state.courseSearch = '';
+  state.pendingCourseSearch = '';
   state.partneredOnly = false;
   state.scholarshipOnly = false;
   state.shortlist = new Set();
-  if (!(id in state.cimRemoved)) state.cimRemoved[id] = false;
   renderAll();
 }
 
 // ── Filtering pipeline ────────────────────────────────────────
+// Budget is now an Always-required field: it always constrains the search, regardless of the
+// Flexible-fields With-constraint/F2F toggle.
+function passesBudget(course) {
+  return course.tuitionFeeUSD <= state.required.budget;
+}
+
 function passesFlexible(course) {
   if (state.flexibleMode === 'asked') return true;
   const f = state.flexible;
-  return course.tuitionFeeUSD <= f.maxTuition
-    && course.backlogsAllowed >= f.backlogs
+  return course.backlogsAllowed >= f.backlogs
     && course.minWorkExpMonths <= f.workExp
     && course.minGradePercent <= f.grade
-    && course.intakeTerm === f.intake;
+    && course.intakeTerm === f.intake
+    && (f.category === 'all' || course.category === f.category);
 }
 
 function passesSecondary(course) {
@@ -255,35 +274,50 @@ function getSourcePool() {
   return all.filter(c => c.cohortByCourse && c.cohortByCareer).map(c => ({ ...c, _cohort: mergedCohort(c), _badge: 'Course + career match' }));
 }
 
+function getFilteredPool() {
+  return getSourcePool().filter(passesBudget).filter(passesFlexible).filter(passesSecondary);
+}
+
+// A relaxed-tagged course (similarRelaxed / partialRelaxed) only counts toward "All" and its base
+// bucket once that bucket's own "include relaxed" toggle is on — point 10: turning relaxed on for
+// a bucket increases that bucket's count AND the "All" total above it, rather than staying static.
+function effectiveBucket(course) {
+  if (course._cohort === 'similarRelaxed') return state.relaxedIncluded.similar ? 'similar' : null;
+  if (course._cohort === 'partialRelaxed') return state.relaxedIncluded.partial ? 'partial' : null;
+  return course._cohort;
+}
+
 function cohortCounts(pool) {
-  const counts = { all: pool.length };
-  COHORT_ORDER.forEach(k => counts[k] = 0);
-  pool.forEach(c => { counts[c._cohort] = (counts[c._cohort] || 0) + 1; });
+  const counts = { all: 0, exact: 0, related: 0, similar: 0, partial: 0 };
+  pool.forEach(c => {
+    const b = effectiveBucket(c);
+    if (!b) return;
+    counts.all++;
+    counts[b] = (counts[b] || 0) + 1;
+  });
   return counts;
 }
 
+// Career preference mode swaps the Exact/Related/Similar/Partial vocabulary (which describes
+// structural closeness to a course ask) for a simpler Good/High Match split, since "Related" or
+// "Similar" don't read naturally for a career fit. High Match = strong cohortByCareer strength.
+const CAREER_HIGH_MATCH_THRESHOLD = 70;
+function careerMatchPercent(course) { return Math.round(COHORT_STRENGTH[course.cohortByCareer] / 6 * 100); }
+
 function getVisibleResults() {
-  let pool = getSourcePool();
-  pool = pool.filter(passesFlexible).filter(passesSecondary);
-  const relaxedSibling = RELAXED_SIBLING[state.cohortTab];
-  if (relaxedSibling) {
-    pool = pool.filter(c => c._cohort === state.cohortTab || (state.includeRelaxed && c._cohort === relaxedSibling));
-  } else if (state.cohortTab !== 'all') {
-    pool = pool.filter(c => c._cohort === state.cohortTab);
+  const pool = getFilteredPool();
+  if (state.source === 'career') {
+    if (state.cohortTab === 'all') return pool;
+    return pool.filter(c => (careerMatchPercent(c) >= CAREER_HIGH_MATCH_THRESHOLD) === (state.cohortTab === 'high'));
   }
-  return pool;
+  if (state.cohortTab === 'all') return pool.filter(c => effectiveBucket(c) !== null);
+  return pool.filter(c => effectiveBucket(c) === state.cohortTab);
 }
 
 // ── Rendering ─────────────────────────────────────────────────
 function el(html) { const t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstElementChild; }
 
 function fmtUSD(n) { return n === 0 ? 'Fully funded' : `$${n.toLocaleString('en-US')}`; }
-
-function safetyClasses(s) {
-  if (s === 'Safe') return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-  if (s === 'Moderate') return 'bg-amber-50 text-amber-700 border-amber-200';
-  return 'bg-rose-50 text-rose-700 border-rose-200';
-}
 
 function intakeClasses(s) {
   if (s === 'Open') return 'bg-emerald-50 text-emerald-700';
@@ -304,51 +338,122 @@ function renderStudentHeader() {
         <span class="px-2 py-0.5 rounded-md text-[11px] font-semibold ${s.workExpMonths > 0 ? 'bg-indigo-50 text-indigo-700' : 'bg-slate-100 text-slate-600'}">${s.workExpMonths > 0 ? 'Experienced' : 'Fresher'}</span>
         <span class="text-xs text-text-muted">${s.workExpMonths > 0 ? `${s.workExpMonths} mo work exp` : 'No work experience on file'}</span>
         ${s.hasCareerPreference ? `<span class="text-xs text-text-muted">•</span><span class="text-xs text-text-muted">Career pref: <b class="text-text-main font-medium">${s.careerPreference}</b></span>` : `<span class="text-xs text-text-muted">•</span><span class="text-xs text-text-muted italic">No career preference on file</span>`}
+        <span class="text-xs text-text-muted">•</span>
+        <span class="text-xs text-text-muted">Country: <b class="text-text-main font-medium">${s.country.join(', ')}</b></span>
       </div>
       <div class="text-xs text-text-muted mt-0.5">Requesting: ${s.courseRequirement}</div>
     </div>`;
 }
 
-function renderCourseTypePills() {
-  const s = currentStudent();
-  const wrap = document.getElementById('courseTypePills');
-  wrap.innerHTML = s.courseTypePills.map((p, i) => `
-    <button class="pill ${i === 0 ? 'pill-active' : ''}" type="button">${p.label} <span class="opacity-60">(${p.count})</span></button>
-  `).join('');
+function groupCounts(courses, key) {
+  const map = new Map();
+  courses.forEach(c => { const k = c[key]; if (!k) return; map.set(k, (map.get(k) || 0) + 1); });
+  return [...map.entries()].sort((a, b) => b[1] - a[1]);
 }
 
+// Career-path groups also carry a fabricated match % (there's no real scoring model behind this
+// mock data — it's derived from how strong each course's own cohort match is, averaged per path,
+// so it's at least grounded in the underlying data rather than arbitrary).
+function careerPathGroups(courses) {
+  const map = new Map();
+  courses.forEach(c => {
+    if (!c.careerPath || !c.cohortByCareer) return;
+    if (!map.has(c.careerPath)) map.set(c.careerPath, []);
+    map.get(c.careerPath).push(c);
+  });
+  return [...map.entries()]
+    .map(([path, list]) => ({
+      path,
+      count: list.length,
+      matchPercent: Math.round(list.reduce((sum, c) => sum + COHORT_STRENGTH[c.cohortByCareer], 0) / list.length / 6 * 100),
+    }))
+    .sort((a, b) => b.matchPercent - a.matchPercent);
+}
+
+function pillsRowHtml(label, bodyHtml) {
+  return `
+    <div>
+      <div class="text-[11px] font-semibold text-text-muted uppercase tracking-wide mb-1">${label}</div>
+      ${bodyHtml}
+    </div>`;
+}
+
+// Pills are source-aware: "Course requirement" groups by course name, "Career preference" groups
+// by the career domain each matched course actually leads to (with a match % per domain), "Both"
+// shows both dimensions stacked (rather than merging two different taxonomies into one row).
+// Display-only for now — not wired as a click filter, matching how this row behaved before.
+function renderCourseTypePills() {
+  const courses = currentCourses();
+  const wrap = document.getElementById('courseTypePills');
+  const rows = [];
+  if (state.source === 'course' || state.source === 'both') {
+    const courseEntries = groupCounts(courses.filter(c => c.cohortByCourse), 'name');
+    const body = courseEntries.length === 0
+      ? `<div class="text-xs text-text-muted italic">No course-requirement matches for this student.</div>`
+      : `<div class="flex items-center gap-2 flex-wrap">${courseEntries.map(([name, count], i) => `
+          <span class="pill ${i === 0 ? 'pill-active' : ''}">${name} <span class="opacity-60">(${count})</span></span>
+        `).join('')}</div>`;
+    rows.push(pillsRowHtml('Course type', body));
+  }
+  if (state.source === 'career' || state.source === 'both') {
+    const careerEntries = careerPathGroups(courses.filter(c => c.cohortByCareer));
+    const body = careerEntries.length === 0
+      ? `<div class="text-xs text-text-muted italic">No career-preference matches to group by domain.</div>`
+      : `<div class="flex items-center gap-2 flex-wrap">${careerEntries.map((e, i) => `
+          <span class="pill career-pill ${i === 0 ? 'pill-active' : ''}">${e.path}
+            <span class="match-pct">${e.matchPercent}% match</span>
+            <span class="opacity-60">(${e.count})</span>
+          </span>
+        `).join('')}</div>`;
+    rows.push(pillsRowHtml('Career path', body));
+  }
+  wrap.innerHTML = rows.join('');
+}
+
+// Always-required fields still always constrain the search (no Match/F2F-style toggle to turn
+// them off) — but they're editable inputs, not read-only locked chips.
 function renderAlwaysRequired() {
-  const s = currentStudent();
-  const wrap = document.getElementById('alwaysRequired');
-  const items = [
-    { label: 'Country', value: s.country.join(', ') },
-    { label: 'Course', value: s.courseRequirement },
-    { label: 'Duration', value: s.duration },
+  const fields = [
+    { key: 'country', label: 'Country', type: 'text' },
+    { key: 'course', label: 'Course', type: 'text' },
+    { key: 'duration', label: 'Duration', type: 'text' },
+    { key: 'budget', label: 'Budget (max, $)', type: 'number' },
   ];
-  wrap.innerHTML = items.map(i => `
-    <div class="locked-field">
-      <div class="locked-field-label">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-3 h-3"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
-        ${i.label}
-      </div>
-      <div class="locked-field-value">${i.value}</div>
+  const wrap = document.getElementById('alwaysRequired');
+  wrap.innerHTML = fields.map(f => `
+    <div class="required-field">
+      <label class="text-xs font-medium text-text-muted block mb-1">${f.label} <span class="text-accent-dark">*</span></label>
+      <input id="required_${f.key}" type="${f.type}" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 ${f.type === 'number' ? 'font-mono' : ''}" />
     </div>
   `).join('');
+  fields.forEach(f => {
+    const input = document.getElementById(`required_${f.key}`);
+    input.value = state.required[f.key];
+    input.oninput = (e) => {
+      state.required[f.key] = f.type === 'number' ? (Number(e.target.value) || 0) : e.target.value;
+      if (f.key === 'budget') { renderResults(); renderCohortTabs(); }
+    };
+  });
 }
 
 function renderFlexible() {
   const f = state.pendingFlexible;
   document.getElementById('flexSwitch').checked = state.flexibleMode === 'asked';
   document.getElementById('intakeFlex').value = f.intake;
-  document.getElementById('maxTuition').value = f.maxTuition;
   document.getElementById('backlogs').value = f.backlogs;
   document.getElementById('workExp').value = f.workExp;
   document.getElementById('grade').value = f.grade;
+  document.getElementById('categoryFlex').value = f.category;
   const disabled = state.flexibleMode === 'asked';
-  ['intakeFlex', 'maxTuition', 'backlogs', 'workExp', 'grade'].forEach(id => {
+  ['intakeFlex', 'backlogs', 'workExp', 'grade', 'categoryFlex'].forEach(id => {
     document.getElementById(id).disabled = disabled;
   });
-  document.querySelectorAll('.flex-field').forEach(elm => elm.classList.toggle('opacity-40', disabled));
+  document.querySelectorAll('#flexPanelBody .flex-field').forEach(elm => elm.classList.toggle('opacity-40', disabled));
+
+  document.getElementById('flexPanelBody').classList.toggle('hidden', !state.flexPanelOpen);
+  document.getElementById('flexPanelChevron').classList.toggle('rotate-90', state.flexPanelOpen);
+  document.getElementById('flexPanelSummary').textContent = state.flexPanelOpen ? '' : `(${disabled ? 'Student to join F2F' : 'With constraint'})`;
+
   renderApplyState();
 }
 
@@ -356,8 +461,8 @@ function renderApplyState() {
   const disabled = state.flexibleMode === 'asked';
   const dirty = !disabled && JSON.stringify(state.pendingFlexible) !== JSON.stringify(state.flexible);
   const baseNote = disabled
-    ? "Set to 'Student to join F2F' — results will ignore intake, fee, backlog, work exp and grade cutoffs."
-    : "Set to 'With constraint' — results are constrained by intake, fee, backlog, work exp and grade cutoffs below.";
+    ? "Set to 'Student to join F2F' — results will ignore intake, backlog, work exp, grade and category cutoffs. Budget still always applies."
+    : "Set to 'With constraint' — results are constrained by intake, backlog, work exp, grade and category below. Budget still always applies.";
   const note = document.getElementById('flexNote');
   note.innerHTML = baseNote + (dirty ? ' <b class="text-accent-dark">Unapplied changes — click Apply.</b>' : '');
   const btn = document.getElementById('applyFlexBtn');
@@ -365,37 +470,57 @@ function renderApplyState() {
   btn.disabled = disabled;
 }
 
+// CIM holds up to 5 pinned courses/colleges, all added to the shortlist by default. The list is
+// collapsed by default — the header shows a live count, and a button expands it to review or
+// remove individual entries (with an "Add back" undo, not a permanent delete).
 function renderCIM() {
   const s = currentStudent();
-  const cim = s.cim;
-  const removed = !!state.cimRemoved[s.id];
+  const removedIds = state.cimRemovedIds[s.id] || new Set();
+  const activeCount = s.cimList.filter(c => !removedIds.has(c.id)).length;
   const wrap = document.getElementById('cimRow');
-  if (removed) {
-    wrap.innerHTML = `
-      <div class="flex items-center justify-between py-3 px-4 text-sm text-text-muted">
-        <span>Course in Mind removed from this student's shortlist.</span>
-        <button id="cimRestoreBtn" class="text-accent font-medium hover:underline cursor-pointer">Add back</button>
-      </div>`;
-    document.getElementById('cimRestoreBtn').onclick = () => { state.cimRemoved[s.id] = false; state.shortlist.add(cim.id); renderAll(); };
-    return;
-  }
-  wrap.innerHTML = `
-    <div class="flex items-center gap-3 py-3 px-4 flex-wrap">
-      <span class="cim-tag">Course in Mind</span>
-      <div class="min-w-0 flex-1">
-        <div class="font-medium text-text-main text-sm truncate">${cim.name}</div>
-        <div class="text-xs text-text-muted truncate">${cim.university} · ${cim.country}</div>
-      </div>
-      <span class="text-xs px-2 py-1 rounded-md ${intakeClasses(cim.intakeStatus)}">${cim.intakeStatus}</span>
-      <span class="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-md whitespace-nowrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="w-3.5 h-3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-        Added to shortlist by default
+
+  const headerHtml = `
+    <button id="cimPanelHeader" type="button" class="w-full flex items-center justify-between gap-3 p-4 cursor-pointer flex-wrap">
+      <span class="flex items-center gap-2 flex-wrap">
+        <span class="cim-tag">Course in Mind</span>
+        <span class="text-sm font-medium text-text-main">${s.cimList.length === 0 ? 'No entries for this student' : `${activeCount} of ${s.cimList.length} added to shortlist by default`}</span>
       </span>
-      <button id="cimRemoveBtn" class="text-text-muted hover:text-rose-600 cursor-pointer p-1" title="Remove from shortlist">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
+      ${s.cimList.length > 0 ? `<span class="text-xs text-accent-dark font-semibold">${state.cimPanelOpen ? 'Hide list' : 'View list'}</span>` : ''}
+    </button>`;
+
+  const bodyHtml = s.cimList.length === 0 ? '' : `
+    <div id="cimPanelBody" class="${state.cimPanelOpen ? '' : 'hidden'} px-4 pb-4 space-y-2">
+      ${s.cimList.map(cim => {
+        const isRemoved = removedIds.has(cim.id);
+        return `
+        <div class="flex items-center gap-3 border border-border rounded-lg p-2.5 ${isRemoved ? 'opacity-50' : ''}">
+          <div class="min-w-0 flex-1">
+            <div class="font-medium text-text-main text-sm truncate ${isRemoved ? 'line-through' : ''}">${cim.name}</div>
+            <div class="text-xs text-text-muted truncate">${cim.university} · ${cim.country}</div>
+          </div>
+          <span class="text-xs px-2 py-1 rounded-md ${intakeClasses(cim.intakeStatus)} shrink-0">${cim.intakeStatus}</span>
+          ${isRemoved
+            ? `<button class="cim-restore text-accent font-medium text-xs hover:underline cursor-pointer shrink-0" data-cim-id="${cim.id}">Add back</button>`
+            : `<button class="cim-remove text-text-muted hover:text-rose-600 cursor-pointer p-1 shrink-0" data-cim-id="${cim.id}" title="Remove from shortlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M6 6l12 12M18 6L6 18"/></svg></button>`}
+        </div>`;
+      }).join('')}
     </div>`;
-  document.getElementById('cimRemoveBtn').onclick = () => { state.cimRemoved[s.id] = true; state.shortlist.delete(cim.id); renderAll(); };
+
+  wrap.innerHTML = headerHtml + bodyHtml;
+
+  if (s.cimList.length > 0) {
+    document.getElementById('cimPanelHeader').onclick = () => { state.cimPanelOpen = !state.cimPanelOpen; renderCIM(); };
+    wrap.querySelectorAll('.cim-remove, .cim-restore').forEach(b => {
+      b.onclick = (e) => {
+        e.stopPropagation();
+        const id = b.dataset.cimId;
+        if (!state.cimRemovedIds[s.id]) state.cimRemovedIds[s.id] = new Set();
+        if (b.classList.contains('cim-remove')) state.cimRemovedIds[s.id].add(id);
+        else state.cimRemovedIds[s.id].delete(id);
+        renderAll();
+      };
+    });
+  }
 }
 
 const SOURCE_LABELS = { course: 'Course requirement', career: 'Career preference', both: 'Both' };
@@ -412,7 +537,12 @@ function renderSourceSelector() {
     <button class="seg-btn ${state.source === key ? 'seg-active' : ''}" data-source="${key}" type="button">${SOURCE_LABELS[key]}</button>
   `).join('');
   wrap.querySelectorAll('button').forEach(b => {
-    b.onclick = () => { state.source = b.dataset.source; state.sourceIsManual = true; renderAll(); };
+    b.onclick = () => {
+      state.source = b.dataset.source;
+      state.sourceIsManual = true;
+      state.cohortTab = 'all'; // tab vocabulary differs between career (Good/High Match) and course/both (Exact/Related/...)
+      renderAll();
+    };
   });
   const caption = document.getElementById('sourceCaption');
   if (state.sourceIsManual) {
@@ -423,14 +553,31 @@ function renderSourceSelector() {
 }
 
 function renderCohortTabs() {
-  const pool = getSourcePool().filter(passesFlexible).filter(passesSecondary);
-  const counts = cohortCounts(pool);
-  const countFor = (key) => {
-    const sibling = RELAXED_SIBLING[key];
-    return counts[key] + (sibling && state.includeRelaxed ? counts[sibling] : 0);
-  };
+  const rawPool = getFilteredPool();
   const wrap = document.getElementById('cohortTabs');
-  const tabs = [['all', 'All', counts.all], ...BASE_TAB_ORDER.map(k => [k, COHORT_LABEL[k], countFor(k)])];
+  const relaxedWrap = document.getElementById('relaxedToggleWrap');
+
+  if (state.source === 'career') {
+    // Career mode: Good Match / High Match instead of Exact/Related/Similar/Partial — that
+    // vocabulary describes structural closeness to a course ask, which doesn't map cleanly to
+    // career fit. No "relaxed" concept here, so that toggle row stays hidden.
+    let high = 0, good = 0;
+    rawPool.forEach(c => { if (careerMatchPercent(c) >= CAREER_HIGH_MATCH_THRESHOLD) high++; else good++; });
+    const tabs = [['all', 'All', rawPool.length], ['good', 'Good Match', good], ['high', 'High Match', high]];
+    wrap.innerHTML = tabs.map(([key, label, count]) => `
+      <button class="cohort-tab ${state.cohortTab === key ? 'cohort-tab-active' : ''}" data-cohort="${key}" type="button">
+        ${label} <span class="opacity-60">(${count})</span>
+      </button>
+    `).join('');
+    wrap.querySelectorAll('button').forEach(b => b.onclick = () => { state.cohortTab = b.dataset.cohort; renderAll(); });
+    relaxedWrap.classList.add('hidden');
+    relaxedWrap.innerHTML = '';
+    return;
+  }
+
+  // Course requirement / Both: unchanged Exact/Related/Similar/Partial Match tabs.
+  const counts = cohortCounts(rawPool);
+  const tabs = [['all', 'All', counts.all], ...BASE_TAB_ORDER.map(k => [k, COHORT_LABEL[k], counts[k]])];
   wrap.innerHTML = tabs.map(([key, label, count]) => `
     <button class="cohort-tab ${state.cohortTab === key ? 'cohort-tab-active' : ''}" data-cohort="${key}" type="button">
       ${label} <span class="opacity-60">(${count})</span>
@@ -439,63 +586,145 @@ function renderCohortTabs() {
   wrap.querySelectorAll('button').forEach(b => b.onclick = () => { state.cohortTab = b.dataset.cohort; renderAll(); });
 
   // Inline "Relaxed" modifier — only relevant when Similar or Partial Match is the active tab.
-  const relaxedWrap = document.getElementById('relaxedToggleWrap');
+  // Each bucket has its own independent relaxed flag, so turning it on here also grows "All" above.
   const sibling = RELAXED_SIBLING[state.cohortTab];
   if (sibling) {
-    const extra = counts[sibling];
+    const extra = rawPool.filter(c => c._cohort === sibling).length;
+    const bucketKey = state.cohortTab; // 'similar' | 'partial'
     relaxedWrap.classList.remove('hidden');
     relaxedWrap.innerHTML = `
       <label class="inline-flex items-center gap-2 text-xs text-text-muted cursor-pointer select-none">
-        <input type="checkbox" id="relaxedToggle" class="pretty w-3.5 h-3.5 cursor-pointer" ${state.includeRelaxed ? 'checked' : ''} />
+        <input type="checkbox" id="relaxedToggle" class="pretty w-3.5 h-3.5 cursor-pointer" ${state.relaxedIncluded[bucketKey] ? 'checked' : ''} />
         Include relaxed criteria (${COHORT_LABEL[sibling]})${extra > 0 ? ` — <span class="text-accent-dark font-medium">${extra} additional course${extra === 1 ? '' : 's'} available</span>` : ' — <span class="opacity-60">no additional courses available</span>'}
       </label>`;
-    document.getElementById('relaxedToggle').onchange = (e) => { state.includeRelaxed = e.target.checked; renderAll(); };
+    document.getElementById('relaxedToggle').onchange = (e) => { state.relaxedIncluded[bucketKey] = e.target.checked; renderAll(); };
   } else {
     relaxedWrap.classList.add('hidden');
     relaxedWrap.innerHTML = '';
   }
 }
 
-function renderSidebar() {
-  const s = currentStudent();
-  const countries = [...new Set(currentCourses().map(c => c.country))];
-  const wrap = document.getElementById('countryPills');
-  wrap.innerHTML = `<button class="pill ${!state.countryFilter ? 'pill-active' : ''}" data-country="">All countries</button>` +
-    countries.map(c => `<button class="pill ${state.countryFilter === c ? 'pill-active' : ''}" data-country="${c}">${c}</button>`).join('');
-  wrap.querySelectorAll('button').forEach(b => b.onclick = () => { state.countryFilter = b.dataset.country || null; renderAll(); });
+function accordionSection(key, title, countLabel, bodyHtml) {
+  const open = state.sidebarOpen[key];
+  return `
+    <div class="border-b border-border last:border-b-0 py-1">
+      <button class="filter-accordion-header" data-filter-key="${key}" type="button">
+        <span>${title}${countLabel != null ? ` <span class="opacity-60 font-normal">(${countLabel})</span>` : ''}</span>
+        <svg class="filter-chevron ${open ? 'rotate-180' : ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="${open ? '' : 'hidden'} pb-3 pt-1">${bodyHtml}</div>
+    </div>`;
+}
 
-  const collegeWrap = document.getElementById('collegeList');
-  const uniNames = [...new Set(currentCourses().map(c => c.university))].filter(u => u.toLowerCase().includes(state.collegeSearch.toLowerCase()));
-  collegeWrap.innerHTML = uniNames.map(u => `<div class="college-item">${u}</div>`).join('') || `<div class="text-xs text-text-muted px-2 py-2">No colleges match.</div>`;
+// Recomputes just the college results list (not the whole accordion) so the search input never
+// gets torn down and rebuilt mid-keystroke — that would steal focus/cursor position every time.
+function renderCollegeList() {
+  const allMatches = [...new Set(currentCourses().map(c => c.university))].filter(u => u.toLowerCase().includes(state.collegeSearch.toLowerCase()));
+  const shown = allMatches.slice(0, 5);
+  const remaining = allMatches.length - shown.length;
+  const listEl = document.getElementById('collegeList');
+  if (!listEl) return;
+  listEl.innerHTML = (shown.map(u => `<div class="college-item">${u}</div>`).join('') || `<div class="text-xs text-text-muted px-2 py-2">No colleges match.</div>`)
+    + (remaining > 0 ? `<div class="text-xs text-text-muted px-2 py-2 italic">+${remaining} more — refine your search to narrow down.</div>` : '');
+}
+
+function renderSidebar() {
+  const countries = [...new Set(currentCourses().map(c => c.country))];
+  const collegeCount = new Set(currentCourses().map(c => c.university)).size;
+
+  const countryBody = `
+    <div class="flex flex-wrap gap-1.5">
+      <button class="pill ${!state.countryFilter ? 'pill-active' : ''}" data-country="">All countries</button>
+      ${countries.map(c => `<button class="pill ${state.countryFilter === c ? 'pill-active' : ''}" data-country="${c}">${c}</button>`).join('')}
+    </div>`;
+
+  const categoryBody = `
+    <select id="categoryFilter" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 bg-white cursor-pointer">
+      <option value="all">All categories</option>
+      <option value="stem">STEM</option>
+      <option value="business">Business</option>
+    </select>`;
+
+  const collegesBody = `
+    <input id="collegeSearch" type="text" placeholder="Search colleges…" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 mb-2" />
+    <div id="collegeList" class="space-y-0.5"></div>`;
+
+  const otherBody = `
+    <label class="flex items-center gap-2 text-sm cursor-pointer mb-2">
+      <input type="checkbox" id="partneredOnly" class="pretty w-4 h-4 cursor-pointer" ${state.partneredOnly ? 'checked' : ''} />
+      Partnered Courses
+    </label>
+    <label class="flex items-center gap-2 text-sm cursor-pointer">
+      <input type="checkbox" id="scholarshipOnly" class="pretty w-4 h-4 cursor-pointer" ${state.scholarshipOnly ? 'checked' : ''} />
+      With Scholarships
+    </label>`;
+
+  const wrap = document.getElementById('filterAccordion');
+  wrap.innerHTML = [
+    accordionSection('country', 'Country', null, countryBody),
+    accordionSection('category', 'Course Category', null, categoryBody),
+    accordionSection('colleges', 'Colleges', collegeCount, collegesBody),
+    accordionSection('other', 'Other preferences', null, otherBody),
+  ].join('');
+
+  wrap.querySelectorAll('.filter-accordion-header').forEach(b => {
+    b.onclick = () => { const k = b.dataset.filterKey; state.sidebarOpen[k] = !state.sidebarOpen[k]; renderSidebar(); };
+  });
+  wrap.querySelectorAll('[data-country]').forEach(b => b.onclick = () => { state.countryFilter = b.dataset.country || null; renderAll(); });
+
+  const categorySelect = document.getElementById('categoryFilter');
+  if (categorySelect) {
+    categorySelect.value = state.categoryFilter;
+    categorySelect.onchange = (e) => { state.categoryFilter = e.target.value; renderAll(); };
+  }
+  const collegeSearchInput = document.getElementById('collegeSearch');
+  if (collegeSearchInput) {
+    collegeSearchInput.value = state.collegeSearch;
+    collegeSearchInput.oninput = (e) => { state.collegeSearch = e.target.value; renderCollegeList(); };
+  }
+  renderCollegeList();
+
+  const partneredCb = document.getElementById('partneredOnly');
+  if (partneredCb) partneredCb.onchange = (e) => { state.partneredOnly = e.target.checked; renderAll(); };
+  const scholarshipCb = document.getElementById('scholarshipOnly');
+  if (scholarshipCb) scholarshipCb.onchange = (e) => { state.scholarshipOnly = e.target.checked; renderAll(); };
+}
+
+function cohortBadgeLabel(course) {
+  if (state.source === 'career') {
+    const pct = careerMatchPercent(course);
+    return pct >= CAREER_HIGH_MATCH_THRESHOLD ? `High Match (${pct}%)` : `Good Match (${pct}%)`;
+  }
+  return COHORT_LABEL[course._cohort];
 }
 
 function courseCard(course) {
   const inShortlist = state.shortlist.has(course.id);
   const badgeHtml = state.source === 'both' ? `<span class="source-badge">${course._badge}</span>` : '';
+  const outcomeHtml = (state.source !== 'course' && course.careerPath) ? `<div class="outcome-tag">→ ${course.careerPath}</div>` : '';
   return `
-    <div class="course-card ${inShortlist ? 'course-card-selected' : ''}" data-id="${course.id}">
-      <div class="flex items-start justify-between gap-2 mb-2">
-        <div class="flex items-center gap-1.5 flex-wrap">
-          <span class="cohort-badge">${COHORT_LABEL[course._cohort]}</span>
+    <div class="course-card-sm ${inShortlist ? 'course-card-selected' : ''}" data-id="${course.id}">
+      <div class="flex items-start justify-between gap-2">
+        <div class="flex items-center gap-1 flex-wrap min-w-0">
+          <span class="cohort-badge">${cohortBadgeLabel(course)}</span>
           ${badgeHtml}
         </div>
-        <label class="course-check">
+        <label class="course-check shrink-0">
           <input type="checkbox" data-id="${course.id}" ${inShortlist ? 'checked' : ''} />
           <span></span>
         </label>
       </div>
-      <div class="font-semibold text-sm text-text-main leading-snug">${course.name}</div>
-      <div class="text-xs text-text-muted mt-0.5">${course.university} · ${course.country}</div>
-      <div class="flex items-center gap-2 mt-2 flex-wrap">
-        <span class="px-2 py-0.5 rounded-md text-[11px] font-medium border ${safetyClasses(course.safety)}">${course.safety}</span>
-        <span class="px-2 py-0.5 rounded-md text-[11px] font-medium ${intakeClasses(course.intakeStatus)}">${course.intakeStatus}</span>
-        ${course.partnered ? '<span class="px-2 py-0.5 rounded-md text-[11px] font-medium bg-indigo-50 text-indigo-700">Partnered</span>' : ''}
+      <div class="font-semibold text-[13px] text-text-main leading-snug mt-1 truncate" title="${course.name}">${course.name}</div>
+      <div class="text-[11px] text-text-muted truncate">${course.university} · ${course.country}</div>
+      ${outcomeHtml}
+      <div class="flex items-center justify-between mt-1.5 gap-1">
+        <span class="px-1.5 py-0.5 rounded text-[10px] font-medium ${intakeClasses(course.intakeStatus)}">${course.intakeStatus}</span>
+        ${course.partnered ? '<span class="px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-50 text-indigo-700">Partnered</span>' : ''}
+        <span class="text-[10px] text-text-muted font-mono ml-auto">QS #${course.qsRank}</span>
       </div>
-      <div class="grid grid-cols-2 gap-x-3 gap-y-1.5 mt-3 text-xs text-text-muted font-mono">
-        <div>QS Rank <b class="text-text-main font-semibold">#${course.qsRank}</b></div>
-        <div>Duration <b class="text-text-main font-semibold">${course.durationMonths} mo</b></div>
-        <div>Tuition <b class="text-text-main font-semibold">${fmtUSD(course.tuitionFeeUSD)}</b></div>
-        <div>Scholarships <b class="text-text-main font-semibold">${course.scholarshipCount}</b></div>
+      <div class="flex items-center justify-between mt-1 text-[11px] font-mono">
+        <span class="text-text-main font-semibold">${fmtUSD(course.tuitionFeeUSD)}</span>
+        <span class="text-text-muted">${course.durationMonths} mo${course.scholarshipCount > 0 ? ` · ${course.scholarshipCount} scholarship${course.scholarshipCount === 1 ? '' : 's'}` : ''}</span>
       </div>
     </div>`;
 }
@@ -560,29 +789,30 @@ function renderResults() {
 
 function renderShortlistCount() {
   const s = currentStudent();
-  const cimIncluded = !state.cimRemoved[s.id];
-  const count = state.shortlist.size + (cimIncluded && !state.shortlist.has(s.cim.id) ? 1 : 0);
-  document.getElementById('bookmarkCount').textContent = count;
+  const removedIds = state.cimRemovedIds[s.id] || new Set();
+  const cimActiveCount = s.cimList.filter(c => !removedIds.has(c.id)).length;
+  document.getElementById('bookmarkCount').textContent = state.shortlist.size + cimActiveCount;
 }
 
 function renderDrawer() {
   const s = currentStudent();
-  const cimIncluded = !state.cimRemoved[s.id];
-  const all = currentCourses().filter(c => state.shortlist.has(c.id));
+  const removedIds = state.cimRemovedIds[s.id] || new Set();
+  const activeCim = s.cimList.filter(c => !removedIds.has(c.id));
+  const shortlistedCourses = currentCourses().filter(c => state.shortlist.has(c.id));
   const wrap = document.getElementById('drawerList');
   const rows = [];
-  if (cimIncluded) {
+  activeCim.forEach(cim => {
     rows.push(`
       <div class="drawer-item">
         <div class="min-w-0">
           <span class="cim-tag mb-1 inline-block">CIM</span>
-          <div class="font-medium text-sm text-text-main truncate">${s.cim.name}</div>
-          <div class="text-xs text-text-muted truncate">${s.cim.university}</div>
+          <div class="font-medium text-sm text-text-main truncate">${cim.name}</div>
+          <div class="text-xs text-text-muted truncate">${cim.university}</div>
         </div>
-        <button class="text-text-muted hover:text-rose-600 cursor-pointer p-1 shrink-0" data-remove="cim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+        <button class="text-text-muted hover:text-rose-600 cursor-pointer p-1 shrink-0" data-remove="cim:${cim.id}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       </div>`);
-  }
-  all.forEach(c => {
+  });
+  shortlistedCourses.forEach(c => {
     rows.push(`
       <div class="drawer-item">
         <div class="min-w-0">
@@ -596,7 +826,12 @@ function renderDrawer() {
   wrap.querySelectorAll('[data-remove]').forEach(b => {
     b.onclick = () => {
       const id = b.dataset.remove;
-      if (id === 'cim') { state.cimRemoved[s.id] = true; } else { state.shortlist.delete(id); }
+      if (id.startsWith('cim:')) {
+        if (!state.cimRemovedIds[s.id]) state.cimRemovedIds[s.id] = new Set();
+        state.cimRemovedIds[s.id].add(id.slice(4));
+      } else {
+        state.shortlist.delete(id);
+      }
       renderAll();
     };
   });
@@ -620,12 +855,17 @@ function renderAll() {
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('studentSwitcher').addEventListener('change', (e) => switchStudent(e.target.value));
 
+  document.getElementById('flexPanelHeader').addEventListener('click', () => {
+    state.flexPanelOpen = !state.flexPanelOpen;
+    renderFlexible();
+  });
+
   document.getElementById('flexSwitch').addEventListener('change', (e) => {
     state.flexibleMode = e.target.checked ? 'asked' : 'availability';
     renderAll();
   });
 
-  ['maxTuition', 'backlogs', 'workExp', 'grade'].forEach(id => {
+  ['backlogs', 'workExp', 'grade'].forEach(id => {
     document.getElementById(id).addEventListener('input', (e) => {
       state.pendingFlexible[id] = Number(e.target.value) || 0;
       renderApplyState();
@@ -637,6 +877,11 @@ document.addEventListener('DOMContentLoaded', () => {
     renderApplyState();
   });
 
+  document.getElementById('categoryFlex').addEventListener('change', (e) => {
+    state.pendingFlexible.category = e.target.value;
+    renderApplyState();
+  });
+
   document.getElementById('applyFlexBtn').addEventListener('click', () => {
     state.flexible = { ...state.pendingFlexible };
     renderResults();
@@ -644,11 +889,19 @@ document.addEventListener('DOMContentLoaded', () => {
     renderApplyState();
   });
 
-  document.getElementById('categoryFilter').addEventListener('change', (e) => { state.categoryFilter = e.target.value; renderAll(); });
-  document.getElementById('collegeSearch').addEventListener('input', (e) => { state.collegeSearch = e.target.value; renderSidebar(); });
-  document.getElementById('courseSearch').addEventListener('input', (e) => { state.courseSearch = e.target.value; renderResults(); renderCohortTabs(); });
-  document.getElementById('partneredOnly').addEventListener('change', (e) => { state.partneredOnly = e.target.checked; renderAll(); });
-  document.getElementById('scholarshipOnly').addEventListener('change', (e) => { state.scholarshipOnly = e.target.checked; renderAll(); });
+  // Course/university search is Apply-gated too, kept as its own separate box from the sidebar
+  // college search per the "keep them separate" decision.
+  document.getElementById('courseSearch').addEventListener('input', (e) => {
+    state.pendingCourseSearch = e.target.value;
+    const dirty = state.pendingCourseSearch !== state.courseSearch;
+    document.getElementById('applySearchBtn').classList.toggle('apply-btn-dirty', dirty);
+  });
+  document.getElementById('applySearchBtn').addEventListener('click', () => {
+    state.courseSearch = state.pendingCourseSearch;
+    document.getElementById('applySearchBtn').classList.remove('apply-btn-dirty');
+    renderResults();
+    renderCohortTabs();
+  });
 
   document.getElementById('viewBookmarksBtn').addEventListener('click', () => document.getElementById('drawer').classList.add('drawer-open'));
   document.getElementById('drawerCloseBtn').addEventListener('click', () => document.getElementById('drawer').classList.remove('drawer-open'));
@@ -659,7 +912,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => toast.classList.remove('toast-show'), 2600);
   });
 
-  // init: seed CIM into shortlist for default student
-  state.shortlist.add(STUDENTS.priya.cim.id);
   renderAll();
 });

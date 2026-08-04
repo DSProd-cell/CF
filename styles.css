@@ -18,20 +18,9 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 .pill:hover { background: #E2E8F0; }
 .pill-active { background: #FFF7ED; color: #C2410C; border-color: #FDBA74; font-weight: 600; }
 
-/* Locked / always-required fields */
-.locked-field {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
-  border-radius: 10px;
-  padding: 8px 12px;
-  min-width: 0;
-}
-.locked-field-label {
-  display: flex; align-items: center; gap: 5px;
-  font-size: 0.7rem; font-weight: 600; letter-spacing: .02em;
-  color: #94A3B8; text-transform: uppercase; margin-bottom: 3px;
-}
-.locked-field-value { font-size: 0.85rem; font-weight: 500; color: #0F172A; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Career-path pills carry a match % badge */
+.career-pill { display: inline-flex; align-items: center; gap: 6px; }
+.match-pct { font-size: 0.68rem; font-weight: 700; color: #16A34A; }
 
 /* Toggle switch */
 .switch { position: relative; display: inline-block; width: 42px; height: 24px; flex-shrink: 0; }
@@ -47,7 +36,7 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 .switch input:checked + .track::before { transform: translateX(18px); }
 
 #applyFlexBtn:disabled { opacity: 0.4; cursor: not-allowed; }
-#applyFlexBtn.apply-btn-dirty { box-shadow: 0 0 0 3px rgba(234,88,12,0.25); }
+.apply-btn-dirty { box-shadow: 0 0 0 3px rgba(234,88,12,0.25); }
 
 /* Segmented control */
 .seg-btn {
@@ -65,17 +54,18 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 .cohort-tab:hover { color: #0F172A; }
 .cohort-tab-active { color: #EA580C; font-weight: 600; border-bottom-color: #EA580C; }
 
-/* Course cards */
-.course-card {
-  background: white; border: 1px solid #E2E8F0; border-radius: 12px; padding: 14px;
+/* Course cards — compact */
+.course-card-sm {
+  background: white; border: 1px solid #E2E8F0; border-radius: 10px; padding: 9px;
   cursor: pointer; transition: box-shadow .15s, border-color .15s, transform .15s;
 }
-.course-card:hover { box-shadow: 0 4px 16px rgba(15,23,42,0.08); transform: translateY(-1px); }
+.course-card-sm:hover { box-shadow: 0 4px 16px rgba(15,23,42,0.08); transform: translateY(-1px); }
 .course-card-selected { border-color: #EA580C; box-shadow: 0 0 0 1px #EA580C; }
 
-.cohort-badge { font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #EEF2FF; color: #4338CA; }
-.source-badge { font-size: 0.68rem; font-weight: 600; padding: 2px 8px; border-radius: 999px; background: #FFF7ED; color: #C2410C; }
+.cohort-badge { font-size: 0.63rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: #EEF2FF; color: #4338CA; }
+.source-badge { font-size: 0.63rem; font-weight: 600; padding: 1px 7px; border-radius: 999px; background: #FFF7ED; color: #C2410C; }
 .cim-tag { font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: #0C1A2E; color: white; letter-spacing: .02em; }
+.outcome-tag { font-size: 0.68rem; font-weight: 500; color: #16A34A; margin-top: 2px; }
 
 .course-check { position: relative; display: inline-flex; width: 22px; height: 22px; cursor: pointer; }
 .course-check input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
@@ -90,6 +80,14 @@ body { font-family: 'Poppins', system-ui, sans-serif; -webkit-font-smoothing: an
 
 .college-item { font-size: 0.82rem; color: #334155; padding: 6px 8px; border-radius: 6px; cursor: default; }
 .college-item:hover { background: #F1F5F9; }
+
+/* Sidebar FILTERS accordion */
+.filter-accordion-header {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 2px; font-size: 0.82rem; font-weight: 600; color: #0F172A; cursor: pointer;
+}
+.filter-chevron { width: 16px; height: 16px; color: #94A3B8; transition: transform .15s; flex-shrink: 0; }
+.filter-chevron.rotate-180 { transform: rotate(180deg); }
 
 /* Drawer */
 #drawer { position: fixed; inset: 0; z-index: 50; pointer-events: none; }

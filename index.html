@@ -30,7 +30,7 @@
 </head>
 <body class="font-body bg-surface text-text-main min-h-screen">
 
-  <!-- Top bar -->
+  <!-- 1. Header of user details -->
   <div class="bg-white border-b border-border sticky top-0 z-20">
     <div class="max-w-[1400px] mx-auto px-5 py-3 flex items-center justify-between gap-3 flex-wrap lg:flex-nowrap">
       <div class="flex items-center gap-3 min-w-0 shrink-0">
@@ -61,63 +61,33 @@
     </div>
   </div>
 
-  <!-- Strict filters bar -->
-  <div class="bg-white border-b border-border">
-    <div class="max-w-[1400px] mx-auto px-5 py-2.5 flex items-center gap-4 flex-wrap text-sm">
-      <span class="text-xs font-semibold text-text-muted uppercase tracking-wide">Strict filters</span>
-      <span class="pill pill-active">Intake: Sep 2026</span>
-      <span class="pill">Academic cutoff: Standard</span>
-      <span class="pill">Academic cutoff: Relaxed</span>
+  <!-- Full-width sections: Always required, Flexible fields, Course in Mind -->
+  <div class="max-w-[1400px] mx-auto px-5 pt-4 space-y-4">
+
+    <!-- 2. Always required (incl. Budget) -->
+    <div class="bg-white border border-border rounded-xl p-4">
+      <div class="text-sm font-semibold mb-3">Always required <span class="text-xs font-normal text-text-muted">— editable, but always constrains the search</span></div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3" id="alwaysRequired"></div>
     </div>
-  </div>
 
-  <!-- Course type pills -->
-  <div class="max-w-[1400px] mx-auto px-5 pt-3 flex items-center gap-2 flex-wrap" id="courseTypePills"></div>
-
-  <div class="max-w-[1400px] mx-auto px-5 py-4 flex gap-5 items-start">
-
-    <!-- Sidebar -->
-    <aside class="w-[240px] shrink-0 bg-white border border-border rounded-xl p-4 hidden lg:block">
-      <div class="mb-4">
-        <div class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-2">Country</div>
-        <div id="countryPills" class="flex flex-wrap gap-1.5"></div>
+    <!-- 3. Flexible fields (collapsed by default) -->
+    <div class="bg-white border border-border rounded-xl p-4">
+      <div class="w-full flex items-center justify-between gap-2 flex-wrap">
+        <button id="flexPanelHeader" type="button" class="flex items-center gap-2 cursor-pointer">
+          <svg id="flexPanelChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4 text-text-muted transition-transform"><path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6"/></svg>
+          <span class="text-sm font-semibold">Flexible fields</span>
+          <span id="flexPanelSummary" class="text-xs text-text-muted"></span>
+        </button>
+        <span class="flex items-center gap-2.5 text-sm">
+          <span class="text-text-muted">With constraint</span>
+          <label class="switch">
+            <input type="checkbox" id="flexSwitch" />
+            <span class="track"></span>
+          </label>
+          <span class="text-text-muted">Student to join F2F</span>
+        </span>
       </div>
-      <div class="mb-4">
-        <div class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-2">Course category</div>
-        <select id="categoryFilter" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 bg-white cursor-pointer">
-          <option value="all">All categories</option>
-          <option value="stem">STEM</option>
-          <option value="business">Business</option>
-        </select>
-      </div>
-      <div>
-        <div class="text-xs font-semibold text-text-muted uppercase tracking-wide mb-2">Colleges</div>
-        <input id="collegeSearch" type="text" placeholder="Search colleges…" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 mb-2" />
-        <div id="collegeList" class="max-h-56 overflow-y-auto space-y-0.5"></div>
-      </div>
-    </aside>
-
-    <!-- Main -->
-    <main class="flex-1 min-w-0 space-y-4">
-
-      <!-- Always-required fields -->
-      <div class="bg-white border border-border rounded-xl p-4">
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="alwaysRequired"></div>
-      </div>
-
-      <!-- Flexible fields -->
-      <div class="bg-white border border-border rounded-xl p-4">
-        <div class="flex items-center justify-between mb-3 flex-wrap gap-2">
-          <div class="text-sm font-semibold">Flexible fields</div>
-          <div class="flex items-center gap-2.5 text-sm">
-            <span class="text-text-muted">With constraint</span>
-            <label class="switch">
-              <input type="checkbox" id="flexSwitch" />
-              <span class="track"></span>
-            </label>
-            <span class="text-text-muted">Student to join F2F</span>
-          </div>
-        </div>
+      <div id="flexPanelBody" class="hidden mt-3">
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
           <div class="flex-field">
             <label class="text-xs font-medium text-text-muted block mb-1">Intake</label>
@@ -126,10 +96,6 @@
               <option value="Jan 2027">Jan 2027</option>
               <option value="May 2027">May 2027</option>
             </select>
-          </div>
-          <div class="flex-field">
-            <label class="text-xs font-medium text-text-muted block mb-1">Overall tuition fee (max, $)</label>
-            <input id="maxTuition" type="number" step="500" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
           </div>
           <div class="flex-field">
             <label class="text-xs font-medium text-text-muted block mb-1">Backlog(s) allowed</label>
@@ -143,23 +109,53 @@
             <label class="text-xs font-medium text-text-muted block mb-1">Grades (min %)</label>
             <input id="grade" type="number" step="1" min="0" max="100" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 font-mono" />
           </div>
+          <div class="flex-field">
+            <label class="text-xs font-medium text-text-muted block mb-1">Course category</label>
+            <select id="categoryFlex" class="w-full text-sm border border-border rounded-lg px-2.5 py-2 bg-white cursor-pointer">
+              <option value="all">All categories</option>
+              <option value="stem">STEM</option>
+              <option value="business">Business</option>
+            </select>
+          </div>
         </div>
         <div class="flex items-center justify-between gap-3 mt-3 flex-wrap">
           <p id="flexNote" class="text-xs text-text-muted flex-1 min-w-[200px]"></p>
           <button id="applyFlexBtn" type="button" class="shrink-0 bg-accent hover:bg-accent-dark text-white text-xs font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors">Apply</button>
         </div>
       </div>
+    </div>
 
-      <!-- Course in Mind -->
-      <div class="bg-white border border-border rounded-xl" id="cimRow"></div>
+    <!-- 4. Course in Mind (collapsed list of up to 5) -->
+    <div class="bg-white border border-border rounded-xl" id="cimRow"></div>
 
-      <!-- Source selector -->
-      <div class="bg-white border border-border rounded-xl p-4">
+  </div>
+
+  <!-- Sidebar + main: starts at "Shortlist based on" -->
+  <div class="max-w-[1400px] mx-auto px-5 py-4 flex gap-5 items-start">
+
+    <!-- Sidebar: FILTERS accordion -->
+    <aside class="w-[240px] shrink-0 bg-white border border-border rounded-xl p-4 hidden lg:block">
+      <div class="text-xs font-bold text-text-muted uppercase tracking-wide mb-1">Filters</div>
+      <div id="filterAccordion"></div>
+    </aside>
+
+    <!-- Main -->
+    <main class="flex-1 min-w-0 space-y-4">
+
+      <!-- 5. Shortlist based on + Career path + Courses -->
+      <div class="bg-white border border-border rounded-xl p-4 space-y-3">
         <div class="flex items-center justify-between flex-wrap gap-3">
           <div class="text-sm font-semibold">Shortlist based on</div>
           <div id="sourceSelector" class="inline-flex bg-surface rounded-lg p-1 gap-1"></div>
         </div>
-        <p id="sourceCaption" class="text-xs text-text-muted mt-2"></p>
+        <p id="sourceCaption" class="text-xs text-text-muted -mt-2"></p>
+
+        <div id="courseTypePills" class="space-y-2 pt-1"></div>
+
+        <div class="flex items-center gap-2 pt-1">
+          <input id="courseSearch" type="text" placeholder="Search college or course…" class="flex-1 min-w-[160px] text-sm border border-border rounded-lg px-3 py-2" />
+          <button id="applySearchBtn" type="button" class="shrink-0 bg-accent hover:bg-accent-dark text-white text-xs font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors">Apply</button>
+        </div>
       </div>
 
       <!-- Cohort tabs -->
@@ -168,21 +164,8 @@
         <div id="relaxedToggleWrap" class="hidden mt-2 pt-2 border-t border-border"></div>
       </div>
 
-      <!-- Secondary filters -->
-      <div class="flex items-center gap-4 flex-wrap px-1">
-        <label class="flex items-center gap-2 text-sm cursor-pointer">
-          <input type="checkbox" id="partneredOnly" class="pretty w-4 h-4 cursor-pointer" />
-          Partnered Courses
-        </label>
-        <label class="flex items-center gap-2 text-sm cursor-pointer">
-          <input type="checkbox" id="scholarshipOnly" class="pretty w-4 h-4 cursor-pointer" />
-          With Scholarships
-        </label>
-        <input id="courseSearch" type="text" placeholder="Search course or university…" class="flex-1 min-w-[200px] text-sm border border-border rounded-lg px-3 py-2" />
-      </div>
-
       <!-- Results grid -->
-      <div id="resultsGrid" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3"></div>
+      <div id="resultsGrid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2.5"></div>
 
     </main>
   </div>
