@@ -28,7 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="font-body bg-surface text-text-main min-h-screen">
+<body class="font-body bg-surface text-text-main min-h-screen pb-20">
 
   <!-- 1. Header of user details -->
   <div class="bg-white border-b border-border sticky top-0 z-20">
@@ -52,16 +52,11 @@
           <option value="sana">Sana Iyer</option>
           <option value="karan">Karan Verma (blank)</option>
         </select>
-        <button id="viewBookmarksBtn" type="button" class="relative flex items-center gap-2 bg-accent hover:bg-accent-dark text-white text-sm font-medium px-4 py-2 rounded-lg cursor-pointer transition-colors">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-4-7 4V5z"/></svg>
-          View Bookmarks
-          <span id="bookmarkCount" class="bg-white text-accent-dark text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
-        </button>
       </div>
     </div>
   </div>
 
-  <!-- Full-width sections: Always required, Flexible fields, Course in Mind -->
+  <!-- Full-width sections: Always required, Flexible fields, Course in Mind, Shortlist based on -->
   <div class="max-w-[1400px] mx-auto px-5 pt-4 space-y-4">
 
     <!-- 2. Always required (incl. Budget) -->
@@ -128,9 +123,26 @@
     <!-- 4. Course in Mind (collapsed list of up to 5) -->
     <div class="bg-white border border-border rounded-xl" id="cimRow"></div>
 
+    <!-- 5. Shortlist based on — full width, pills + search in one row -->
+    <div class="bg-white border border-border rounded-xl p-4 space-y-3">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div class="text-sm font-semibold">Shortlist based on</div>
+        <div id="sourceSelector" class="inline-flex bg-surface rounded-lg p-1 gap-1"></div>
+      </div>
+      <p id="sourceCaption" class="text-xs text-text-muted -mt-2"></p>
+
+      <div class="flex items-end gap-3 flex-wrap pt-1">
+        <div id="courseTypePills" class="flex-1 min-w-[240px]"></div>
+        <div class="flex items-center gap-2 shrink-0">
+          <input id="courseSearch" type="text" placeholder="Search college or course…" class="w-56 text-sm border border-border rounded-lg px-3 py-2" />
+          <button id="applySearchBtn" type="button" class="shrink-0 bg-accent hover:bg-accent-dark text-white text-xs font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors">Apply</button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Sidebar + main: starts at "Shortlist based on" -->
+  <!-- Sidebar + main: starts below "Shortlist based on" -->
   <div class="max-w-[1400px] mx-auto px-5 py-4 flex gap-5 items-start">
 
     <!-- Sidebar: Global Search + FILTERS accordion -->
@@ -146,22 +158,6 @@
     <!-- Main -->
     <main class="flex-1 min-w-0 space-y-4">
 
-      <!-- 5. Shortlist based on + Career path + Courses -->
-      <div class="bg-white border border-border rounded-xl p-4 space-y-3">
-        <div class="flex items-center justify-between flex-wrap gap-3">
-          <div class="text-sm font-semibold">Shortlist based on</div>
-          <div id="sourceSelector" class="inline-flex bg-surface rounded-lg p-1 gap-1"></div>
-        </div>
-        <p id="sourceCaption" class="text-xs text-text-muted -mt-2"></p>
-
-        <div id="courseTypePills" class="space-y-2 pt-1"></div>
-
-        <div class="flex items-center gap-2 pt-1">
-          <input id="courseSearch" type="text" placeholder="Search college or course…" class="flex-1 min-w-[160px] text-sm border border-border rounded-lg px-3 py-2" />
-          <button id="applySearchBtn" type="button" class="shrink-0 bg-accent hover:bg-accent-dark text-white text-xs font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors">Apply</button>
-        </div>
-      </div>
-
       <!-- Cohort tabs -->
       <div class="bg-white border border-border rounded-xl px-4 pt-3 pb-2">
         <div id="cohortTabs" class="flex items-center gap-5 overflow-x-auto"></div>
@@ -172,6 +168,17 @@
       <div id="resultsGrid" class="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-2.5"></div>
 
     </main>
+  </div>
+
+  <!-- Persistent bottom bookmarks bar -->
+  <div id="bottomBar" class="fixed bottom-0 left-0 right-0 bg-accent text-white z-30 shadow-[0_-4px_16px_rgba(0,0,0,0.15)]">
+    <div class="max-w-[1400px] mx-auto px-5 py-3 flex items-center justify-between gap-3">
+      <span id="bottomBarCount" class="text-sm font-semibold">0 Courses added</span>
+      <button id="viewBookmarksBtn" type="button" class="flex items-center gap-2 bg-white text-accent-dark text-sm font-semibold px-4 py-2 rounded-lg cursor-pointer transition-colors">
+        View Bookmarks
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- Drawer -->
